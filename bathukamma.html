@@ -1,111 +1,386 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta content="width=device-width,initial-scale=1" name="viewport" />
   <title>Bathukamma Festival | Melton Maguvalu</title>
-  <meta name="description" content="Discover Melton Maguvalu's flagship Bathukamma celebration and meaningful sponsorship opportunities for local businesses and community partners.">
-  <link rel="icon" href="resources/images/Melton_Maguvalu_Logo.webp">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css">
-  <script defer src="assets/site.js"></script>
+  <meta
+    content="Discover Melton Maguvalu's flagship Bathukamma celebration and meaningful sponsorship opportunities for local businesses and community partners."
+    name="description" />
+  <link href="resources/images/Melton_Maguvalu_Logo.webp" rel="icon" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Playfair+Display:wght@700;800&amp;display=swap"
+    rel="stylesheet" />
+  <link href="assets/site.css" rel="stylesheet" />
+  <script defer="" src="assets/site.js"></script>
+  <style id="bathukamma-moments-style">
+    /* Bathukamma page only: seamless festival moments marquee, preserving full images */
+    .bathu-gallery-section {
+      max-width: none;
+      overflow: hidden;
+    }
+
+    .bathu-gallery-section>.container {
+      width: min(100% - 48px, var(--max));
+      margin-inline: auto;
+    }
+
+    .bathu-moments-marquee {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding-block: 8px 18px;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    }
+
+    .bathu-moments-track {
+      display: flex;
+      align-items: flex-start;
+      width: max-content;
+      animation: bathu-moments-scroll 44s linear infinite;
+      will-change: transform;
+    }
+
+    .bathu-moments-marquee:hover .bathu-moments-track,
+    .bathu-moments-marquee:focus-within .bathu-moments-track {
+      animation-play-state: paused;
+    }
+
+    .bathu-moments-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      padding-right: 22px;
+    }
+
+    .bathu-moment {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: min(78vw, 720px);
+      margin: 0;
+    }
+
+    .bathu-moment img {
+      display: block;
+      width: auto;
+      height: clamp(260px, 30vw, 410px);
+      max-width: min(78vw, 720px);
+      object-fit: contain;
+      border-radius: 22px;
+      background: transparent;
+      box-shadow: 0 16px 42px rgba(43, 17, 35, .12);
+    }
+
+    .bathu-moment figcaption {
+      display: grid;
+      gap: 3px;
+      max-width: 520px;
+      padding: 13px 4px 0;
+      color: var(--ink);
+    }
+
+    .bathu-moment figcaption strong {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.08rem;
+      line-height: 1.2;
+    }
+
+    .bathu-moment figcaption span {
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+
+    .bathu-moments-note {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+
+    @keyframes bathu-moments-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .bathu-gallery-section>.container {
+        width: min(100% - 36px, var(--max));
+      }
+
+      .bathu-moments-marquee {
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+      }
+
+      .bathu-moments-group {
+        gap: 14px;
+        padding-right: 14px;
+      }
+
+      .bathu-moment {
+        max-width: 88vw;
+      }
+
+      .bathu-moment img {
+        height: clamp(220px, 62vw, 330px);
+        max-width: 88vw;
+        border-radius: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bathu-moments-marquee {
+        overflow-x: auto;
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+
+      .bathu-moments-track {
+        animation: none;
+      }
+
+      .bathu-moments-group[aria-hidden="true"] {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="index.html"><img src="resources/images/Melton_Maguvalu_Logo.webp" alt="Melton Maguvalu logo"><span>MELTON<br>MAGUVALU</span></a>
-    <nav class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="bathukamma.html" aria-current="page">Bathukamma</a><a href="directory.html">Directory</a><a href="partners.html">Partners</a></nav>
-    <div class="nav-actions"><a class="btn btn-light" href="contact.html">Contact</a><a class="btn btn-primary" href="partners.html">Partner with us</a></div>
-    <button class="menu" aria-label="Open navigation">☰</button>
-  </div>
-  <nav class="mobile-nav container"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="bathukamma.html">Bathukamma</a><a href="directory.html">Directory</a><a href="partners.html">Partners</a><a href="contact.html">Contact</a></nav>
-</header>
-
-<main>
-  <section class="bathu-hero">
-    <div class="bathu-hero-media"><img src="resources/images/girl_with_flowers.webp" alt="A child carrying a colourful Bathukamma floral arrangement"></div>
-    <div class="bathu-hero-shade"></div>
-    <div class="container bathu-hero-content">
-      <div class="bathu-kicker">Melton Maguvalu flagship celebration</div>
-      <h1>Bathukamma<br><em>in full bloom.</em></h1>
-      <p>A vibrant celebration of women, flowers, family and cultural pride created by the community and strengthened by meaningful local partnerships.</p>
-      <div class="hero-actions"><a class="btn btn-gold" href="partners.html">Become a sponsor</a><a class="btn bathu-btn-glass" href="#festival-story">Discover the festival</a></div>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><img alt="Melton Maguvalu logo"
+          src="resources/images/Melton_Maguvalu_Logo.webp" /><span>MELTON<br />MAGUVALU</span></a>
+      <nav class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a
+          href="programs.html">Programs</a><a href="events.html">Events</a><a aria-current="page"
+          href="bathukamma.html">Bathukamma</a><a href="directory.html">Directory</a><a
+          href="partners.html">Partners</a></nav>
+      <div class="nav-actions"><a class="btn btn-light" href="contact.html">Contact</a><a class="btn btn-primary"
+          href="partners.html">Partner with us</a></div>
+      <button aria-label="Open navigation" class="menu">☰</button>
     </div>
-    <a class="bathu-scroll" href="#festival-story" aria-label="Scroll to festival story"><span>Explore</span>↓</a>
-  </section>
-
-  <section id="festival-story" class="section bathu-intro">
-    <div class="container bathu-intro-grid">
-      <div class="bathu-intro-copy">
-        <div class="eyebrow">A festival with purpose</div>
-        <h2>Flowers become a language of belonging.</h2>
-        <p>Bathukamma brings generations together through floral artistry, music, dance and shared tradition. For Melton Maguvalu, the celebration is also a platform for women’s leadership, cultural pride, children’s participation and local collaboration.</p>
-        <a class="text-link" href="events.html">See all community events <span>→</span></a>
+    <nav class="mobile-nav container"><a href="index.html">Home</a><a href="about.html">About</a><a
+        href="programs.html">Programs</a><a href="events.html">Events</a><a href="bathukamma.html">Bathukamma</a><a
+        href="directory.html">Directory</a><a href="partners.html">Partners</a><a href="contact.html">Contact</a></nav>
+  </header>
+  <main>
+    <section class="bathu-hero">
+      <div class="bathu-hero-media"><img alt="A child carrying a colourful Bathukamma floral arrangement"
+          src="resources/images/bathukamma_whole_team.webp" /></div>
+      <div class="bathu-hero-shade"></div>
+      <div class="container bathu-hero-content">
+        <div class="bathu-kicker">Melton Maguvalu flagship celebration</div>
+        <h1>Bathukamma<br /><em>in full bloom.</em></h1>
+        <p>A vibrant celebration of women, flowers, family and cultural pride created by the community and strengthened
+          by meaningful local partnerships.</p>
+        <div class="hero-actions"><a class="btn btn-gold" href="partners.html">Become a sponsor</a><a
+            class="btn bathu-btn-glass" href="#festival-story">Discover the festival</a></div>
       </div>
-      <figure class="bathu-feature-image"><img src="resources/images/bathukamma_main.webp" alt="Decorated Bathukamma festival display"><figcaption>Tradition, artistry and community care in every detail.</figcaption></figure>
-    </div>
-  </section>
-
-  <section class="section section-soft bathu-pillars">
-    <div class="container">
-      <div class="section-head"><div><div class="eyebrow">Why it matters</div><h3>One celebration. Many layers of impact.</h3></div><p>Bathukamma creates a shared space where culture is preserved, women lead, children participate and businesses contribute to a stronger local community.</p></div>
-      <div class="bathu-pillar-grid">
-        <article class="bathu-pillar"><span>01</span><h3>Women lead</h3><p>Women shape the celebration through creativity, organisation, performance and community leadership.</p></article>
-        <article class="bathu-pillar"><span>02</span><h3>Culture lives</h3><p>Music, flowers, dress and ritual help younger generations experience and understand their heritage.</p></article>
-        <article class="bathu-pillar"><span>03</span><h3>Families connect</h3><p>The festival creates a joyful setting for families, neighbours and community organisations to meet.</p></article>
-        <article class="bathu-pillar"><span>04</span><h3>Business belongs</h3><p>Local businesses can support a trusted celebration while building genuine community relationships.</p></article>
+      <a aria-label="Scroll to festival story" class="bathu-scroll" href="#festival-story"><span>Explore</span>↓</a>
+    </section>
+    <section class="section bathu-intro" id="festival-story">
+      <div class="container bathu-intro-grid">
+        <div class="bathu-intro-copy">
+          <div class="eyebrow">A festival with purpose</div>
+          <h2>Flowers become a language of belonging.</h2>
+          <p>Bathukamma brings generations together through floral artistry, music, dance and shared tradition. For
+            Melton Maguvalu, the celebration is also a platform for women’s leadership, cultural pride, children’s
+            participation and local collaboration.</p>
+          <a class="text-link" href="events.html">See all community events <span>→</span></a>
+        </div>
+        <figure class="bathu-feature-image"><img alt="Decorated Bathukamma festival display"
+            src="resources/images/bathukamma_main.webp" />
+          <figcaption>Tradition, artistry and community care in every detail.</figcaption>
+        </figure>
+      </div>
+    </section>
+    <section class="section section-soft bathu-pillars">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Why it matters</div>
+            <h3>One celebration. Many layers of impact.</h3>
+          </div>
+          <p>Bathukamma creates a shared space where culture is preserved, women lead, children participate and
+            businesses contribute to a stronger local community.</p>
+        </div>
+        <div class="bathu-pillar-grid">
+          <article class="bathu-pillar"><span>01</span>
+            <h3>Women lead</h3>
+            <p>Women shape the celebration through creativity, organisation, performance and community leadership.</p>
+          </article>
+          <article class="bathu-pillar"><span>02</span>
+            <h3>Culture lives</h3>
+            <p>Music, flowers, dress and ritual help younger generations experience and understand their heritage.</p>
+          </article>
+          <article class="bathu-pillar"><span>03</span>
+            <h3>Families connect</h3>
+            <p>The festival creates a joyful setting for families, neighbours and community organisations to meet.</p>
+          </article>
+          <article class="bathu-pillar"><span>04</span>
+            <h3>Business belongs</h3>
+            <p>Local businesses can support a trusted celebration while building genuine community relationships.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="section bathu-gallery-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Festival moments</div>
+            <h2>Colour, rhythm and community.</h2>
+          </div>
+          <p>Authentic event photography gives visitors and potential sponsors a clear view of the atmosphere,
+            participation and care behind the celebration.</p>
+        </div>
+        <div aria-label="Bathukamma festival moments. Animation pauses when hovered or focused."
+          class="bathu-moments-marquee" role="region">
+          <div class="bathu-moments-track">
+            <div class="bathu-moments-group">
+              <figure class="bathu-moment"><img alt="Melton Maguvalu community group at Bathukamma" decoding="async"
+                  loading="lazy" src="resources/images/bathukamma_whole_team.webp" />
+              </figure>
+              <figure class="bathu-moment"><img alt="Children in traditional dress at Bathukamma" decoding="async"
+                  loading="lazy" src="resources/images/kids_gesture.webp" />
+              </figure>
+              <figure class="bathu-moment"><img alt="Traditional drummers at Bathukamma" decoding="async" loading="lazy"
+                  src="resources/images/bathukamma_band.webp" />
+              </figure>
+              <figure class="bathu-moment"><img alt="Decorated floral Bathukamma arrangement" decoding="async"
+                  loading="lazy" src="resources/images/bathukamma_small.webp" />
+              </figure>
+              <figure class="bathu-moment"><img alt="Orange and yellow Bathukamma floral arrangement" decoding="async"
+                  loading="lazy" src="resources/images/bathukamma_mini.webp" />
+              </figure>
+            </div>
+            <div aria-hidden="true" class="bathu-moments-group">
+              <figure class="bathu-moment" tabindex="-1"><img alt="" decoding="async" loading="lazy"
+                  src="resources/images/bathukamma_whole_team.webp" />
+              </figure>
+              <figure class="bathu-moment" tabindex="-1"><img alt="" decoding="async" loading="lazy"
+                  src="resources/images/kids_gesture.webp" />
+              </figure>
+              <figure class="bathu-moment" tabindex="-1"><img alt="" decoding="async" loading="lazy"
+                  src="resources/images/bathukamma_band.webp" />
+              </figure>
+              <figure class="bathu-moment" tabindex="-1"><img alt="" decoding="async" loading="lazy"
+                  src="resources/images/bathukamma_small.webp" />
+              </figure>
+              <figure class="bathu-moment" tabindex="-1"><img alt="" decoding="async" loading="lazy"
+                  src="resources/images/bathukamma_mini.webp" /></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section bathu-sponsor-section">
+      <div class="container bathu-sponsor-shell">
+        <div class="bathu-sponsor-copy">
+          <div class="eyebrow">For local business</div>
+          <h3>Put your brand beside something people value.</h3>
+          <p>Sponsorship should feel like participation, not just logo placement. We create opportunities for businesses
+            to be visible, useful and genuinely connected to the community.</p>
+          <div class="bathu-benefit-list">
+            <div><span>01</span>
+              <p><strong>Trusted visibility</strong> across event, website and promotional touchpoints.</p>
+            </div>
+            <div><span>02</span>
+              <p><strong>Direct local connection</strong> with families, professionals and community leaders.</p>
+            </div>
+            <div><span>03</span>
+              <p><strong>Meaningful alignment</strong> with women’s empowerment, culture and inclusion.</p>
+            </div>
+            <div><span>04</span>
+              <p><strong>Year-round pathways</strong> through the business directory and broader community programs.</p>
+            </div>
+          </div>
+          <div class="hero-actions"><a class="btn btn-gold" href="partners.html">Explore sponsorship</a><a
+              class="btn bathu-btn-outline" href="contact.html">Start a conversation</a></div>
+        </div>
+        <div class="bathu-sponsor-visual"><img alt="Young participant holding a Bathukamma arrangement"
+            src="resources/images/bathukamma_mini.webp" />
+          <div class="bathu-sponsor-note"><span>More than exposure</span><strong>A visible commitment to
+              community.</strong></div>
+        </div>
+      </div>
+    </section>
+    <section class="section bathu-directory-callout">
+      <div class="container bathu-directory-grid">
+        <div>
+          <div class="eyebrow">Beyond event day</div>
+          <h3>Keep the connection growing.</h3>
+          <p>Businesses can continue engaging with the community through the Melton Maguvalu Business Directory,
+            year-round partnerships and future programs.</p><a class="btn btn-primary" href="directory.html">Explore the
+            business directory</a>
+        </div>
+        <div class="bathu-directory-art"><img alt="Colourful Bathukamma floral display"
+            src="resources/images/bathukamma_small.webp" /></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container cta bathu-final-cta">
+        <div>
+          <div class="eyebrow">Let’s create meaningful impact</div>
+          <h3>Help the festival bloom.</h3>
+          <p>Request sponsorship information and discuss an opportunity shaped around your business and community goals.
+          </p>
+        </div><a class="btn btn-gold" href="contact.html">Request sponsor information</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><a class="brand" href="index.html"><img alt=""
+            src="resources/images/Melton_Maguvalu_Logo.webp" /><span>MELTON<br />MAGUVALU</span></a>
+        <p style="margin-top:18px">Powered by women. Rooted in tradition. Growing through community.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links"><a href="about.html">About</a><a href="programs.html">Programs</a><a
+            href="events.html">Events</a></div>
+      </div>
+      <div>
+        <h4>Flagship</h4>
+        <div class="footer-links"><a href="bathukamma.html">Bathukamma</a><a href="directory.html">Business
+            directory</a><a href="partners.html">Sponsorship</a><a href="gallery.html">Gallery</a></div>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <div class="footer-links"><a href="contact.html">Contact</a><a href="contact.html">Volunteer</a><a
+            href="contact.html">Join community</a></div>
       </div>
     </div>
-  </section>
-
-  <section class="section bathu-gallery-section">
-    <div class="container">
-      <div class="section-head"><div><div class="eyebrow">Festival moments</div><h2>Colour, rhythm and community.</h2></div><p>Authentic event photography gives visitors and potential sponsors a clear view of the atmosphere, participation and care behind the celebration.</p></div>
-      <div class="bathu-gallery">
-        <figure class="bathu-gallery-wide"><img src="resources/images/bathukamma_whole_team.webp" alt="Melton Maguvalu community group at Bathukamma"><figcaption><strong>Community in one frame</strong><span>Women, families, guests and organisers coming together.</span></figcaption></figure>
-        <figure><img src="resources/images/kids_gesture.webp" alt="Children in traditional dress at Bathukamma"><figcaption><strong>Tradition continues</strong><span>Young people take an active place in the celebration.</span></figcaption></figure>
-        <figure><img src="resources/images/bathukamma_band.webp" alt="Traditional drummers at Bathukamma"><figcaption><strong>The rhythm arrives</strong><span>Live cultural performance brings energy to the festival.</span></figcaption></figure>
-        <figure class="bathu-gallery-tall"><img src="resources/images/bathukamma_small.webp" alt="Decorated floral Bathukamma arrangement"><figcaption><strong>Floral artistry</strong><span>Every arrangement carries colour, skill and devotion.</span></figcaption></figure>
-        <figure><img src="resources/images/bathukamma_mini.webp" alt="Orange and yellow Bathukamma floral arrangement"><figcaption><strong>Made with care</strong><span>Details that make the celebration memorable.</span></figcaption></figure>
-      </div>
+    <div class="container" style="margin-top:46px;padding-top:24px;border-top:1px solid #382b35">
+      <p>© 2026 Melton Maguvalu. Community information and event details should be confirmed before publication.</p>
     </div>
-  </section>
-
-  <section class="section bathu-sponsor-section">
-    <div class="container bathu-sponsor-shell">
-      <div class="bathu-sponsor-copy">
-        <div class="eyebrow">For local business</div>
-        <h3>Put your brand beside something people value.</h3>
-        <p>Sponsorship should feel like participation, not just logo placement. We create opportunities for businesses to be visible, useful and genuinely connected to the community.</p>
-        <div class="bathu-benefit-list"><div><span>01</span><p><strong>Trusted visibility</strong> across event, website and promotional touchpoints.</p></div><div><span>02</span><p><strong>Direct local connection</strong> with families, professionals and community leaders.</p></div><div><span>03</span><p><strong>Meaningful alignment</strong> with women’s empowerment, culture and inclusion.</p></div><div><span>04</span><p><strong>Year-round pathways</strong> through the business directory and broader community programs.</p></div></div>
-        <div class="hero-actions"><a class="btn btn-gold" href="partners.html">Explore sponsorship</a><a class="btn bathu-btn-outline" href="contact.html">Start a conversation</a></div>
-      </div>
-      <div class="bathu-sponsor-visual"><img src="resources/images/bathukamma_mini.webp" alt="Young participant holding a Bathukamma arrangement"><div class="bathu-sponsor-note"><span>More than exposure</span><strong>A visible commitment to community.</strong></div></div>
-    </div>
-  </section>
-
-  <section class="section bathu-directory-callout">
-    <div class="container bathu-directory-grid">
-      <div><div class="eyebrow">Beyond event day</div><h3>Keep the connection growing.</h3><p>Businesses can continue engaging with the community through the Melton Maguvalu Business Directory, year-round partnerships and future programs.</p><a class="btn btn-primary" href="directory.html">Explore the business directory</a></div>
-      <div class="bathu-directory-art"><img src="resources/images/bathukamma_small.webp" alt="Colourful Bathukamma floral display"></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container cta bathu-final-cta"><div><div class="eyebrow">Let’s create meaningful impact</div><h3>Help the festival bloom.</h3><p>Request sponsorship information and discuss an opportunity shaped around your business and community goals.</p></div><a class="btn btn-gold" href="contact.html">Request sponsor information</a></div>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="container footer-grid">
-    <div><a class="brand" href="index.html"><img src="resources/images/Melton_Maguvalu_Logo.webp" alt=""><span>MELTON<br>MAGUVALU</span></a><p style="margin-top:18px">Powered by women. Rooted in tradition. Growing through community.</p></div>
-    <div><h4>Explore</h4><div class="footer-links"><a href="about.html">About</a><a href="programs.html">Programs</a><a href="events.html">Events</a></div></div>
-    <div><h4>Flagship</h4><div class="footer-links"><a href="bathukamma.html">Bathukamma</a><a href="directory.html">Business directory</a><a href="partners.html">Sponsorship</a><a href="gallery.html">Gallery</a></div></div>
-    <div><h4>Connect</h4><div class="footer-links"><a href="contact.html">Contact</a><a href="contact.html">Volunteer</a><a href="contact.html">Join community</a></div></div>
-  </div>
-  <div class="container" style="margin-top:46px;padding-top:24px;border-top:1px solid #382b35"><p>© 2026 Melton Maguvalu. Community information and event details should be confirmed before publication.</p></div>
-</footer>
+  </footer>
+  <script>
+    (() => {
+      const track = document.querySelector('.bathu-moments-track');
+      if (!track) return;
+      let timer;
+      window.addEventListener('resize', () => {
+        window.clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          track.style.animation = 'none';
+          void track.offsetWidth;
+          track.style.animation = '';
+        }, 180);
+      }, { passive: true });
+    })();
+  </script>
 </body>
+
 </html>
