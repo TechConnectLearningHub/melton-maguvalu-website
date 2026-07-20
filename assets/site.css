@@ -1392,3 +1392,48 @@ p {
         height: 430px
     }
 }
+/* Homepage team photo: preserve the complete landscape photograph without cropping. */
+.hero-visual:has(.hero-team-photo) {
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    padding: 42px 0 58px;
+}
+
+.hero-visual .hero-team-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2048 / 1365;
+    margin-left: 0;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 120px 120px 28px 28px;
+    background: #f8eef3;
+}
+
+@media (max-width: 900px) {
+    .hero-visual:has(.hero-team-photo) {
+        min-height: auto;
+        padding: 24px 0 54px;
+    }
+
+    .hero-visual .hero-team-photo {
+        width: 100%;
+        height: auto;
+        border-radius: 88px 88px 24px 24px;
+    }
+}
+
+@media (max-width: 620px) {
+    .hero-visual:has(.hero-team-photo) {
+        min-height: auto;
+        padding: 12px 0 66px;
+    }
+
+    .hero-visual .hero-team-photo {
+        width: 100%;
+        height: auto;
+        border-radius: 52px 52px 20px 20px;
+    }
+}
