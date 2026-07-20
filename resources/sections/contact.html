@@ -1,0 +1,32 @@
+<section class="section contact-section" id="contact" aria-labelledby="contact-title">
+  <div class="contact-layout">
+    <div>
+      <span class="section-kicker">Take action</span>
+      <h2 id="contact-title">What would you like to do next?</h2>
+      <p>Use one form for now, but route every enquiry by intent: membership, volunteering, business listing, event
+        sponsorship or long-term partnership.</p>
+      <div class="action-list">
+        <a href="#contact" data-interest="Join the community">Join Community</a>
+        <a href="#contact" data-interest="Volunteer">Volunteer</a>
+        <a href="#contact" data-interest="List my business">List Business</a>
+        <a href="./resources/pages/sponsorship.html">Become Partner</a>
+      </div>
+    </div>
+    <form class="contact-form">
+      <label>Name<input type="text" name="name" placeholder="Your name" required></label>
+      <label>Email<input type="email" name="email" placeholder="Email address" required></label>
+      <label>Interest<select name="interest" required>
+          <option value="">Select one...</option>
+          <option>Join the community</option>
+          <option>Volunteer</option>
+          <option>List my business</option>
+          <option>Event sponsorship</option>
+          <option>Long-term partnership</option>
+          <option>Media / council / grants</option>
+        </select></label>
+      <label>Message<textarea name="message" placeholder="Tell us what you are looking for"></textarea></label>
+      <button class="btn btn-primary" type="submit">Send Enquiry</button>
+      <p class="form-feedback" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
