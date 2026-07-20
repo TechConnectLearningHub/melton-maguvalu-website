@@ -876,3 +876,519 @@ p {
         min-height: 90px
     }
 }
+
+/* Bathukamma flagship experience */
+.bathu-hero {
+    position: relative;
+    min-height: calc(100vh - 82px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: #2a1023;
+    color: #fff
+}
+
+.bathu-hero-media,
+.bathu-hero-shade {
+    position: absolute;
+    inset: 0
+}
+
+.bathu-hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%
+}
+
+.bathu-hero-shade {
+    background: linear-gradient(90deg, rgba(28, 8, 23, .92) 0%, rgba(28, 8, 23, .68) 40%, rgba(28, 8, 23, .12) 72%), linear-gradient(0deg, rgba(25, 8, 20, .55), transparent 45%)
+}
+
+.bathu-hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 150px;
+    padding-bottom: 105px
+}
+
+.bathu-kicker {
+    display: inline-flex;
+    padding: 9px 14px;
+    border: 1px solid rgba(255, 255, 255, .28);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .1);
+    backdrop-filter: blur(10px);
+    font-size: .74rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    font-weight: 900
+}
+
+.bathu-hero h1 {
+    max-width: 830px;
+    margin-top: 24px;
+    font-size: clamp(4rem, 8vw, 8.5rem);
+    line-height: .88;
+    color: #fff
+}
+
+.bathu-hero h1 em {
+    font-weight: 700;
+    color: #f5c75e
+}
+
+.bathu-hero p {
+    max-width: 680px;
+    margin: 28px 0 32px;
+    color: #f3e9ef;
+    font-size: 1.16rem
+}
+
+.bathu-btn-glass {
+    color: #fff;
+    border-color: rgba(255, 255, 255, .42);
+    background: rgba(255, 255, 255, .1);
+    backdrop-filter: blur(12px)
+}
+
+.bathu-scroll {
+    position: absolute;
+    z-index: 3;
+    right: 34px;
+    bottom: 35px;
+    color: #fff;
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    font-size: 1.4rem
+}
+
+.bathu-scroll span {
+    font-size: .65rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl
+}
+
+.bathu-intro {
+    background: linear-gradient(180deg, #fffdf9, #fbf4ea)
+}
+
+.bathu-intro-grid {
+    display: grid;
+    grid-template-columns: .82fr 1.18fr;
+    gap: 76px;
+    align-items: center
+}
+
+.bathu-intro-copy p {
+    font-size: 1.08rem;
+    margin: 26px 0
+}
+
+.text-link {
+    display: inline-flex;
+    gap: 12px;
+    align-items: center;
+    color: var(--plum);
+    font-weight: 900
+}
+
+.text-link span {
+    font-size: 1.3rem
+}
+
+.bathu-feature-image {
+    margin: 0;
+    position: relative
+}
+
+.bathu-feature-image img {
+    width: 100%;
+    height: 660px;
+    object-fit: cover;
+    border-radius: 220px 220px 28px 28px;
+    box-shadow: var(--shadow)
+}
+
+.bathu-feature-image figcaption {
+    position: absolute;
+    left: -28px;
+    bottom: 28px;
+    max-width: 280px;
+    padding: 18px 20px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: var(--shadow);
+    font-size: .86rem;
+    font-weight: 800
+}
+
+.bathu-pillars {
+    background: radial-gradient(circle at 85% 10%, rgba(233, 185, 73, .22), transparent 24%), var(--cream)
+}
+
+.bathu-pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px
+}
+
+.bathu-pillar {
+    min-height: 310px;
+    padding: 30px;
+    border: 1px solid rgba(112, 32, 95, .12);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, .78);
+    display: flex;
+    flex-direction: column
+}
+
+.bathu-pillar span {
+    font-size: .75rem;
+    font-weight: 900;
+    color: var(--plum2)
+}
+
+.bathu-pillar h3 {
+    margin-top: auto;
+    margin-bottom: 12px
+}
+
+.bathu-gallery-section {
+    background: #24121f;
+    color: #fff
+}
+
+.bathu-gallery-section p {
+    color: #cfc1cb
+}
+
+.bathu-gallery {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 260px;
+    gap: 16px
+}
+
+.bathu-gallery figure {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    border-radius: 26px;
+    grid-column: span 4
+}
+
+.bathu-gallery .bathu-gallery-wide {
+    grid-column: span 8;
+    grid-row: span 2
+}
+
+.bathu-gallery .bathu-gallery-tall {
+    grid-row: span 2
+}
+
+.bathu-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s ease
+}
+
+.bathu-gallery figure:hover img {
+    transform: scale(1.035)
+}
+
+.bathu-gallery figure::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 48%, rgba(15, 5, 12, .88))
+}
+
+.bathu-gallery figcaption {
+    position: absolute;
+    z-index: 2;
+    left: 22px;
+    right: 22px;
+    bottom: 20px;
+    display: grid;
+    gap: 3px
+}
+
+.bathu-gallery figcaption strong {
+    font-family: "Playfair Display";
+    font-size: 1.25rem
+}
+
+.bathu-gallery figcaption span {
+    font-size: .84rem;
+    color: #e6dae2
+}
+
+.bathu-sponsor-section {
+    background: linear-gradient(135deg, #6d1d5c, #2b1026);
+    color: #fff
+}
+
+.bathu-sponsor-shell {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 70px;
+    align-items: center
+}
+
+.bathu-sponsor-copy p {
+    color: #eadde7;
+    margin: 22px 0
+}
+
+.bathu-benefit-list {
+    display: grid;
+    gap: 0;
+    margin: 28px 0 34px;
+    border-top: 1px solid rgba(255, 255, 255, .15)
+}
+
+.bathu-benefit-list div {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 12px;
+    padding: 17px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .15)
+}
+
+.bathu-benefit-list span {
+    color: #f5c75e;
+    font-size: .75rem;
+    font-weight: 900
+}
+
+.bathu-benefit-list p {
+    margin: 0
+}
+
+.bathu-benefit-list strong {
+    color: #fff
+}
+
+.bathu-btn-outline {
+    color: #fff;
+    border-color: rgba(255, 255, 255, .32);
+    background: transparent
+}
+
+.bathu-sponsor-visual {
+    position: relative
+}
+
+.bathu-sponsor-visual>img {
+    height: 680px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 32px;
+    box-shadow: 0 35px 90px rgba(0, 0, 0, .3)
+}
+
+.bathu-sponsor-note {
+    position: absolute;
+    left: -38px;
+    bottom: 30px;
+    width: 280px;
+    padding: 22px;
+    border-radius: 22px;
+    background: #fff;
+    color: var(--ink);
+    box-shadow: var(--shadow)
+}
+
+.bathu-sponsor-note span {
+    display: block;
+    font-size: .7rem;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--plum);
+    font-weight: 900
+}
+
+.bathu-sponsor-note strong {
+    display: block;
+    margin-top: 7px;
+    font: 700 1.55rem "Playfair Display";
+    line-height: 1.1
+}
+
+.bathu-directory-callout {
+    background: #fff6e7
+}
+
+.bathu-directory-grid {
+    display: grid;
+    grid-template-columns: 1fr .82fr;
+    gap: 70px;
+    align-items: center
+}
+
+.bathu-directory-grid p {
+    font-size: 1.06rem;
+    margin: 22px 0 28px
+}
+
+.bathu-directory-art {
+    position: relative
+}
+
+.bathu-directory-art::before {
+    content: "";
+    position: absolute;
+    inset: -24px;
+    border: 1px solid rgba(112, 32, 95, .18);
+    border-radius: 50% 50% 26px 26px;
+    transform: rotate(-3deg)
+}
+
+.bathu-directory-art img {
+    position: relative;
+    width: 100%;
+    height: 560px;
+    object-fit: cover;
+    border-radius: 50% 50% 26px 26px;
+    box-shadow: var(--shadow)
+}
+
+.bathu-final-cta {
+    background: linear-gradient(135deg, #74205f, #35102f)
+}
+
+@media(max-width:900px) {
+    .bathu-hero {
+        min-height: 760px
+    }
+
+    .bathu-hero-shade {
+        background: linear-gradient(0deg, rgba(28, 8, 23, .9) 0%, rgba(28, 8, 23, .45) 58%, rgba(28, 8, 23, .08))
+    }
+
+    .bathu-hero-content {
+        padding-top: 310px;
+        padding-bottom: 70px
+    }
+
+    .bathu-intro-grid,
+    .bathu-sponsor-shell,
+    .bathu-directory-grid {
+        grid-template-columns: 1fr
+    }
+
+    .bathu-feature-image img {
+        height: 560px
+    }
+
+    .bathu-pillar-grid {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .bathu-gallery .bathu-gallery-wide {
+        grid-column: span 12
+    }
+
+    .bathu-gallery figure {
+        grid-column: span 6
+    }
+
+    .bathu-gallery .bathu-gallery-tall {
+        grid-row: span 2
+    }
+
+    .bathu-sponsor-visual>img {
+        height: 580px
+    }
+
+    .bathu-sponsor-note {
+        left: 20px
+    }
+
+    .bathu-directory-art {
+        max-width: 620px
+    }
+}
+
+@media(max-width:620px) {
+    .bathu-hero {
+        min-height: 700px
+    }
+
+    .bathu-hero-content {
+        padding-top: 290px;
+        padding-bottom: 55px
+    }
+
+    .bathu-hero h1 {
+        font-size: clamp(3.4rem, 17vw, 5.4rem)
+    }
+
+    .bathu-hero p {
+        font-size: 1rem
+    }
+
+    .bathu-scroll {
+        display: none
+    }
+
+    .bathu-intro-grid {
+        gap: 38px
+    }
+
+    .bathu-feature-image img {
+        height: 470px;
+        border-radius: 140px 140px 24px 24px
+    }
+
+    .bathu-feature-image figcaption {
+        left: 14px;
+        right: 14px;
+        max-width: none
+    }
+
+    .bathu-pillar-grid {
+        grid-template-columns: 1fr
+    }
+
+    .bathu-pillar {
+        min-height: 230px
+    }
+
+    .bathu-gallery {
+        grid-auto-rows: 230px
+    }
+
+    .bathu-gallery figure,
+    .bathu-gallery .bathu-gallery-wide,
+    .bathu-gallery .bathu-gallery-tall {
+        grid-column: 1/-1;
+        grid-row: span 1
+    }
+
+    .bathu-gallery .bathu-gallery-wide {
+        grid-row: span 2
+    }
+
+    .bathu-sponsor-shell {
+        gap: 38px
+    }
+
+    .bathu-sponsor-visual>img {
+        height: 500px
+    }
+
+    .bathu-sponsor-note {
+        left: 14px;
+        right: 14px;
+        width: auto
+    }
+
+    .bathu-directory-art img {
+        height: 430px
+    }
+}
