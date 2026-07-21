@@ -1392,48 +1392,135 @@ p {
         height: 430px
     }
 }
-/* Homepage team photo: preserve the complete landscape photograph without cropping. */
+
+/* ==========================================================================\n   Homepage hero repair: full team photo, no overlap, no horizontal clipping\n   ========================================================================== */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.hero {
+    overflow: clip;
+}
+
+.hero-grid {
+    width: min(1180px, calc(100% - 40px));
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, .95fr);
+}
+
+.hero-copy,
+.hero-visual {
+    min-width: 0;
+}
+
 .hero-visual:has(.hero-team-photo) {
-    min-height: auto;
-    display: flex;
-    align-items: center;
-    padding: 42px 0 58px;
+    position: relative;
+    min-height: 0;
+    display: grid;
+    gap: 18px;
+    align-content: center;
+    padding: 28px 0;
 }
 
 .hero-visual .hero-team-photo {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 2048 / 1365;
-    margin-left: 0;
+    max-height: none;
+    margin: 0;
+    aspect-ratio: auto;
     object-fit: contain;
     object-position: center;
-    border-radius: 120px 120px 28px 28px;
+    border-radius: 90px 90px 28px 28px;
     background: #f8eef3;
+    box-shadow: var(--shadow);
+}
+
+.hero-visual .hero-promise-card {
+    position: static;
+    width: min(100%, 430px);
+    margin: 0;
+    justify-self: start;
+    padding: 20px 22px;
+    border-radius: 22px;
+}
+
+.hero-visual .hero-promise-card strong {
+    font-size: clamp(1.75rem, 2.5vw, 2.35rem);
+    line-height: 1.08;
+}
+
+.hero-visual .hero-promise-card p {
+    margin-top: 6px;
+}
+
+@media (min-width: 901px) {
+    .hero {
+        padding: 58px 0 76px;
+    }
+
+    .hero-grid {
+        gap: clamp(34px, 4vw, 62px);
+        align-items: center;
+    }
+
+    .hero-copy {
+        padding-left: 0;
+    }
+
+    .hero-copy h2 {
+        font-size: clamp(3.7rem, 5.5vw, 5.8rem);
+        max-width: 760px;
+    }
+
+    .hero-visual:has(.hero-team-photo) {
+        padding: 18px 0 12px;
+    }
+
+    .hero-visual .hero-promise-card {
+        justify-self: end;
+        margin-right: 20px;
+    }
 }
 
 @media (max-width: 900px) {
+    .hero-grid {
+        width: min(100% - 40px, 1180px);
+        grid-template-columns: 1fr;
+    }
+
     .hero-visual:has(.hero-team-photo) {
-        min-height: auto;
-        padding: 24px 0 54px;
+        padding: 18px 0 4px;
     }
 
     .hero-visual .hero-team-photo {
-        width: 100%;
-        height: auto;
-        border-radius: 88px 88px 24px 24px;
+        border-radius: 72px 72px 24px 24px;
+    }
+
+    .hero-visual .hero-promise-card {
+        width: min(100%, 520px);
+        justify-self: start;
     }
 }
 
 @media (max-width: 620px) {
+    .hero-grid {
+        width: min(100% - 28px, 1180px);
+    }
+
     .hero-visual:has(.hero-team-photo) {
-        min-height: auto;
-        padding: 12px 0 66px;
+        gap: 14px;
+        padding-top: 8px;
     }
 
     .hero-visual .hero-team-photo {
+        border-radius: 42px 42px 18px 18px;
+    }
+
+    .hero-visual .hero-promise-card {
         width: 100%;
-        height: auto;
-        border-radius: 52px 52px 20px 20px;
+        padding: 18px;
     }
 }
