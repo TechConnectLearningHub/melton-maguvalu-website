@@ -45,13 +45,13 @@
                     <div class="hero-actions"><a class="btn btn-primary" href="programs.html">Explore our work</a><a
                             class="btn btn-light" href="partners.html">Partner with us →</a></div>
                     <div aria-label="What Melton Maguvalu offers" class="hero-proof">
-                        <div class="hero-proof-item"><span>01</span><strong>Women-led</strong><small>Community
+                        <div class="hero-proof-item"><strong>Women-led</strong><small>Community
                                 leadership</small></div>
-                        <div class="hero-proof-item"><span>02</span><strong>Year-round</strong><small>Programs and
+                        <div class="hero-proof-item"><strong>Year-round</strong><small>Programs and
                                 events</small></div>
-                        <div class="hero-proof-item"><span>03</span><strong>Flagship event</strong><small>Bathukamma
+                        <div class="hero-proof-item"><strong>Flagship event</strong><small>Bathukamma
                                 celebration</small></div>
-                        <div class="hero-proof-item"><span>04</span><strong>Local directory</strong><small>Community
+                        <div class="hero-proof-item"><strong>Local directory</strong><small>Community
                                 businesses</small></div>
                     </div>
                 </div>
@@ -78,17 +78,14 @@
                 </div>
                 <div class="cards">
                     <article class="card">
-                        <div class="num">01</div>
                         <h3>Empower women</h3>
                         <p>Leadership, wellbeing, mentoring and opportunities that help women be seen and heard.</p>
                     </article>
                     <article class="card">
-                        <div class="num">02</div>
                         <h3>Celebrate culture</h3>
                         <p>Meaningful events that keep heritage alive while welcoming the wider community.</p>
                     </article>
                     <article class="card">
-                        <div class="num">03</div>
                         <h3>Build partnerships</h3>
                         <p>Purpose-led collaboration with businesses, councils, services and local organisations.</p>
                     </article>
@@ -96,14 +93,15 @@
             </div>
         </section>
         <section class="section">
-            <div class="container spotlight"><img alt="Bathukamma cultural celebration"
+            <div class="container spotlight bathukamma-spotlight"><img alt="Bathukamma cultural celebration"
                     src="resources/images/bathukamma_main.webp" />
                 <div class="spotlight-copy"><span class="tag">Flagship annual celebration</span>
                     <h2 style="margin-top:22px">Bathukamma,<br />in full bloom.</h2>
                     <p>A vibrant expression of women, flowers, culture and belonging—and a powerful platform for
                         businesses to connect with local families.</p>
                     <div class="hero-actions"><a class="btn btn-gold" href="bathukamma.html">Discover Bathukamma</a><a
-                            class="btn btn-light" href="partners.html">Sponsor the event</a></div>
+                            class="btn btn-light spotlight-secondary-btn" href="partners.html">Sponsor the event</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -206,7 +204,6 @@
                 </div>
             </div>
         </section>
-
         <section aria-labelledby="directory-showcase-title" class="section directory-showcase">
             <div class="container">
                 <div class="directory-showcase-shell">
@@ -223,32 +220,26 @@
                     </div>
                     <div aria-label="Business directory categories" class="directory-category-rail">
                         <a href="directory.html?category=food">
-                            <span class="directory-category-index">01</span>
                             <strong>Food &amp; catering</strong>
                             <span aria-hidden="true" class="directory-category-arrow">→</span>
                         </a>
                         <a href="directory.html?category=beauty">
-                            <span class="directory-category-index">02</span>
                             <strong>Beauty &amp; fashion</strong>
                             <span aria-hidden="true" class="directory-category-arrow">→</span>
                         </a>
                         <a href="directory.html?category=property">
-                            <span class="directory-category-index">03</span>
                             <strong>Property &amp; finance</strong>
                             <span aria-hidden="true" class="directory-category-arrow">→</span>
                         </a>
                         <a href="directory.html?category=events">
-                            <span class="directory-category-index">04</span>
                             <strong>Events &amp; creative</strong>
                             <span aria-hidden="true" class="directory-category-arrow">→</span>
                         </a>
                         <a href="directory.html?category=health">
-                            <span class="directory-category-index">05</span>
                             <strong>Health &amp; wellbeing</strong>
                             <span aria-hidden="true" class="directory-category-arrow">→</span>
                         </a>
                         <a href="directory.html?category=education">
-                            <span class="directory-category-index">06</span>
                             <strong>Education &amp; services</strong>
                             <span aria-hidden="true" class="directory-category-arrow">→</span>
                         </a>
@@ -256,7 +247,6 @@
                 </div>
             </div>
         </section>
-
         <section aria-labelledby="evidence-title" class="section evidence-section">
             <div class="container">
                 <div class="section-head evidence-head">
@@ -345,146 +335,156 @@
 
             if (!viewport || !track) return;
 
-            /* Duplicate the cards once to create a seamless loop. */
+            /* Remove clones left by a previous initialization. */
+            track.querySelectorAll('[data-carousel-clone="true"]').forEach((clone) => clone.remove());
+
             const originalCards = Array.from(track.children);
+
+            /* Duplicate the cards once to create a seamless loop. */
             originalCards.forEach((card) => {
                 const clone = card.cloneNode(true);
+                clone.dataset.carouselClone = "true";
                 clone.setAttribute("aria-hidden", "true");
-                clone.setAttribute("tabindex", "-1");
+                clone.querySelectorAll("a, button, input, select, textarea, [tabindex]").forEach((element) => {
+                    element.setAttribute("tabindex", "-1");
+                });
                 track.appendChild(clone);
             });
 
-            let position = 0;
-            let lastTime = 0;
-            let animationFrame = 0;
-            let userInteracting = false;
+            let autoScrollTimer = 0;
             let resumeTimer = 0;
-            let writingScrollPosition = false;
+            let isPaused = false;
+            let isDragging = false;
+            let dragStartX = 0;
+            let dragStartScrollLeft = 0;
 
-            const pixelsPerSecond = 34;
+            const loopWidth = () => track.scrollWidth / 2;
 
-            const getLoopWidth = () => track.scrollWidth / 2;
+            const normalisePosition = () => {
+                const width = loopWidth();
+                if (!width) return;
 
-            const wrapPosition = () => {
-                const loopWidth = getLoopWidth();
-                if (!loopWidth) return;
-
-                while (position >= loopWidth) position -= loopWidth;
-                while (position < 0) position += loopWidth;
-            };
-
-            const writePosition = () => {
-                writingScrollPosition = true;
-                viewport.scrollLeft = position;
-                writingScrollPosition = false;
-            };
-
-            const animate = (time) => {
-                if (!lastTime) lastTime = time;
-
-                const deltaSeconds = Math.min((time - lastTime) / 1000, 0.05);
-                lastTime = time;
-
-                if (!userInteracting && !document.hidden) {
-                    position += pixelsPerSecond * deltaSeconds;
-                    wrapPosition();
-                    writePosition();
+                if (viewport.scrollLeft >= width) {
+                    viewport.scrollLeft -= width;
+                } else if (viewport.scrollLeft < 0) {
+                    viewport.scrollLeft += width;
                 }
-
-                animationFrame = requestAnimationFrame(animate);
             };
 
-            const pauseForInteraction = () => {
-                userInteracting = true;
+            const startAutoScroll = () => {
+                window.clearInterval(autoScrollTimer);
+
+                autoScrollTimer = window.setInterval(() => {
+                    if (isPaused || isDragging || document.hidden) return;
+
+                    const width = loopWidth();
+                    if (!width || track.scrollWidth <= viewport.clientWidth) return;
+
+                    viewport.scrollLeft += 1;
+                    normalisePosition();
+                }, 28);
+            };
+
+            const pauseAutoScroll = () => {
+                isPaused = true;
                 window.clearTimeout(resumeTimer);
             };
 
-            const resumeAfter = (delay = 1400) => {
+            const resumeAutoScroll = (delay = 1200) => {
                 window.clearTimeout(resumeTimer);
                 resumeTimer = window.setTimeout(() => {
-                    position = viewport.scrollLeft;
-                    wrapPosition();
-                    userInteracting = false;
-                    lastTime = performance.now();
+                    isPaused = false;
                 }, delay);
             };
 
-            const scrollByOneCard = (direction) => {
-                pauseForInteraction();
+            const cardStep = () => {
+                const card = track.querySelector(".community-event-card");
+                const styles = getComputedStyle(track);
+                const gap = parseFloat(styles.columnGap || styles.gap) || 0;
+                return (card?.getBoundingClientRect().width || viewport.clientWidth * 0.8) + gap;
+            };
 
-                const firstCard = track.querySelector(".community-event-card");
-                const gap = parseFloat(getComputedStyle(track).gap) || 0;
-                const cardWidth = firstCard
-                    ? firstCard.getBoundingClientRect().width
-                    : viewport.clientWidth * 0.8;
+            const moveByCard = (direction) => {
+                pauseAutoScroll();
 
-                position = viewport.scrollLeft + direction * (cardWidth + gap);
-                wrapPosition();
-
-                viewport.scrollTo({
-                    left: position,
+                viewport.scrollBy({
+                    left: cardStep() * direction,
                     behavior: "smooth"
                 });
 
-                resumeAfter(1800);
+                window.setTimeout(normalisePosition, 550);
+                resumeAutoScroll(1700);
             };
 
-            previousButton?.addEventListener("click", () => scrollByOneCard(-1));
-            nextButton?.addEventListener("click", () => scrollByOneCard(1));
+            previousButton?.addEventListener("click", () => moveByCard(-1));
+            nextButton?.addEventListener("click", () => moveByCard(1));
 
-            viewport.addEventListener("pointerdown", pauseForInteraction);
-            viewport.addEventListener("touchstart", pauseForInteraction, { passive: true });
-            viewport.addEventListener("wheel", () => {
-                pauseForInteraction();
-                resumeAfter(1200);
-            }, { passive: true });
+            /* Mouse and pen dragging. */
+            viewport.addEventListener("pointerdown", (event) => {
+                if (event.pointerType === "mouse" && event.button !== 0) return;
 
-            window.addEventListener("pointerup", () => {
-                if (!userInteracting) return;
-                position = viewport.scrollLeft;
-                wrapPosition();
-                resumeAfter();
+                isDragging = true;
+                pauseAutoScroll();
+                dragStartX = event.clientX;
+                dragStartScrollLeft = viewport.scrollLeft;
+                viewport.classList.add("is-dragging");
+                viewport.setPointerCapture?.(event.pointerId);
             });
 
+            viewport.addEventListener("pointermove", (event) => {
+                if (!isDragging) return;
+
+                viewport.scrollLeft = dragStartScrollLeft - (event.clientX - dragStartX);
+                normalisePosition();
+                event.preventDefault();
+            });
+
+            const finishDrag = (event) => {
+                if (!isDragging) return;
+
+                isDragging = false;
+                viewport.classList.remove("is-dragging");
+                viewport.releasePointerCapture?.(event.pointerId);
+                normalisePosition();
+                resumeAutoScroll(1400);
+            };
+
+            viewport.addEventListener("pointerup", finishDrag);
+            viewport.addEventListener("pointercancel", finishDrag);
+
+            /* Mouse wheel and trackpad support. */
+            viewport.addEventListener("wheel", (event) => {
+                pauseAutoScroll();
+
+                if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+                    viewport.scrollLeft += event.deltaY;
+                    event.preventDefault();
+                }
+
+                normalisePosition();
+                resumeAutoScroll(1000);
+            }, { passive: false });
+
+            viewport.addEventListener("touchstart", pauseAutoScroll, { passive: true });
             viewport.addEventListener("touchend", () => {
-                position = viewport.scrollLeft;
-                wrapPosition();
-                resumeAfter();
+                normalisePosition();
+                resumeAutoScroll(1200);
             }, { passive: true });
 
-            viewport.addEventListener("scroll", () => {
-                if (!writingScrollPosition && userInteracting) {
-                    position = viewport.scrollLeft;
-                    wrapPosition();
-                }
-            }, { passive: true });
+            carousel.addEventListener("focusin", pauseAutoScroll);
+            carousel.addEventListener("focusout", () => resumeAutoScroll());
 
-            carousel.addEventListener("focusin", pauseForInteraction);
-            carousel.addEventListener("focusout", () => resumeAfter());
-
+            window.addEventListener("resize", normalisePosition);
             document.addEventListener("visibilitychange", () => {
-                lastTime = performance.now();
+                if (!document.hidden) normalisePosition();
             });
 
-            /* Wait for images and layout so the loop width is accurate. */
-            window.addEventListener("load", () => {
-                position = viewport.scrollLeft;
-                lastTime = performance.now();
-
-                if (!animationFrame) {
-                    animationFrame = requestAnimationFrame(animate);
-                }
-            }, { once: true });
-
-            /* Also start immediately when the page was loaded from cache. */
-            if (document.readyState === "complete") {
-                position = viewport.scrollLeft;
-                lastTime = performance.now();
-                animationFrame = requestAnimationFrame(animate);
-            }
+            /* Start immediately, then restart once all images are loaded. */
+            startAutoScroll();
+            window.addEventListener("load", startAutoScroll, { once: true });
 
             window.addEventListener("beforeunload", () => {
-                cancelAnimationFrame(animationFrame);
+                window.clearInterval(autoScrollTimer);
                 window.clearTimeout(resumeTimer);
             });
         });

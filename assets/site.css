@@ -2426,3 +2426,154 @@ body {
         transition: none;
     }
 }
+
+/* Definitive community carousel scrolling fix */
+.community-events-section {
+    overflow: hidden;
+}
+
+.community-carousel {
+    width: 100%;
+    min-width: 0;
+}
+
+.community-carousel-viewport {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    touch-action: pan-y;
+    cursor: grab;
+    scroll-snap-type: x proximity;
+    scroll-behavior: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(112, 32, 95, .38) rgba(112, 32, 95, .06);
+    -webkit-overflow-scrolling: touch;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+}
+
+.community-carousel-viewport.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+    scroll-snap-type: none;
+}
+
+.community-carousel-viewport::-webkit-scrollbar {
+    display: block !important;
+    height: 9px;
+}
+
+.community-carousel-viewport::-webkit-scrollbar-track {
+    background: rgba(112, 32, 95, .06);
+    border-radius: 999px;
+}
+
+.community-carousel-viewport::-webkit-scrollbar-thumb {
+    background: rgba(112, 32, 95, .34);
+    border-radius: 999px;
+}
+
+.community-carousel-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    min-width: max-content !important;
+    gap: 20px;
+    padding: 4px 2px 24px;
+    transform: none !important;
+}
+
+.community-event-card {
+    flex: 0 0 clamp(310px, 31vw, 410px) !important;
+    width: clamp(310px, 31vw, 410px);
+    min-width: 310px;
+    scroll-snap-align: start;
+}
+
+.community-carousel-button {
+    position: relative;
+    z-index: 3;
+    pointer-events: auto;
+}
+
+@media (max-width: 900px) {
+    .community-event-card {
+        flex-basis: clamp(300px, 62vw, 420px) !important;
+        width: clamp(300px, 62vw, 420px);
+    }
+}
+
+@media (max-width: 620px) {
+    .community-carousel-viewport {
+        touch-action: pan-x pan-y;
+        scroll-snap-type: x mandatory;
+    }
+
+    .community-event-card {
+        flex-basis: min(86vw, 360px) !important;
+        width: min(86vw, 360px);
+        min-width: min(86vw, 360px);
+    }
+}
+
+/* Carousel auto-scroll reliability patch */
+.community-carousel-viewport {
+    scroll-snap-type: none !important;
+    scroll-behavior: auto !important;
+}
+
+.community-carousel-viewport.is-dragging {
+    scroll-snap-type: none !important;
+}
+
+.community-carousel-track {
+    flex-wrap: nowrap !important;
+    width: max-content !important;
+    min-width: max-content !important;
+}
+
+.community-event-card {
+    scroll-snap-align: none !important;
+}
+
+@media (max-width: 620px) {
+    .community-carousel-viewport {
+        scroll-snap-type: none !important;
+    }
+}
+
+/* Bathukamma spotlight secondary button visibility fix */
+.bathukamma-spotlight .spotlight-secondary-btn,
+.spotlight .spotlight-secondary-btn {
+    background: #ffffff !important;
+    color: var(--ink) !important;
+    border-color: rgba(255, 255, 255, .88) !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .14);
+}
+
+.bathukamma-spotlight .spotlight-secondary-btn:hover,
+.bathukamma-spotlight .spotlight-secondary-btn:focus-visible,
+.spotlight .spotlight-secondary-btn:hover,
+.spotlight .spotlight-secondary-btn:focus-visible {
+    background: #fff7dc !important;
+    color: var(--ink) !important;
+    border-color: #fff7dc !important;
+    transform: translateY(-2px);
+}
+
+.bathukamma-spotlight .spotlight-secondary-btn:visited,
+.spotlight .spotlight-secondary-btn:visited {
+    color: var(--ink) !important;
+}
+
+@media (max-width: 620px) {
+
+    .bathukamma-spotlight .spotlight-secondary-btn,
+    .spotlight .spotlight-secondary-btn {
+        width: 100%;
+    }
+}
