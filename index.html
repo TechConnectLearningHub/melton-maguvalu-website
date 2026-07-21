@@ -17,44 +17,49 @@
     <script defer="" src="assets/site.js"></script>
 </head>
 
-<body>
+<body><a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
         <div class="container nav"><a class="brand" href="index.html"><img alt="Melton Maguvalu logo"
                     src="resources/images/Melton_Maguvalu_Logo.webp" /><span>MELTON<br />MAGUVALU</span></a>
-            <nav class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a
+            <nav class="nav-links"><a aria-current="page" href="index.html">Home</a><a href="about.html">About</a><a
                     href="programs.html">Programs</a><a href="events.html">Events</a><a
                     href="bathukamma.html">Bathukamma</a><a href="directory.html">Directory</a><a
                     href="partners.html">Partners</a></nav>
             <div class="nav-actions"><a class="btn btn-light" href="contact.html">Contact</a><a class="btn btn-primary"
-                    href="partners.html">Partner with us</a></div><button aria-label="Open navigation"
-                class="menu">☰</button>
+                    href="partners.html">Partner with us</a></div><button aria-controls="mobile-navigation"
+                aria-expanded="false" aria-label="Open navigation" class="menu">☰</button>
         </div>
-        <nav class="mobile-nav container"><a href="index.html">Home</a><a href="about.html">About</a><a
-                href="programs.html">Programs</a><a href="events.html">Events</a><a
+        <nav class="mobile-nav container" id="mobile-navigation"><a href="index.html">Home</a><a
+                href="about.html">About</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a
                 href="bathukamma.html">Bathukamma</a><a href="directory.html">Directory</a><a
                 href="partners.html">Partners</a><a href="contact.html">Contact</a></nav>
     </header>
-    <main>
-        <section class="hero">
+    <main id="main-content">
+        <section class="hero hero-home">
             <div class="container hero-grid">
                 <div class="hero-copy">
                     <div class="eyebrow">Women-led community · Melton, Victoria</div>
-                    <h2>Belong. Rise. Lead.</h2>
+                    <h1>Belong. Rise. Lead.</h1>
                     <p>Melton Maguvalu brings women and families together through culture, connection, leadership and
                         community action.</p>
                     <div class="hero-actions"><a class="btn btn-primary" href="programs.html">Explore our work</a><a
                             class="btn btn-light" href="partners.html">Partner with us →</a></div>
-                    <div class="metrics">
-                        <div class="metric"><strong>Women-led</strong><span>Community leadership</span></div>
-                        <div class="metric"><strong>Year-round</strong><span>Programs and events</span></div>
-                        <div class="metric"><strong>Local</strong><span>Melton connections</span></div>
-                        <div class="metric"><strong>Inclusive</strong><span>Families and partners</span></div>
+                    <div aria-label="What Melton Maguvalu offers" class="hero-proof">
+                        <div class="hero-proof-item"><span>01</span><strong>Women-led</strong><small>Community
+                                leadership</small></div>
+                        <div class="hero-proof-item"><span>02</span><strong>Year-round</strong><small>Programs and
+                                events</small></div>
+                        <div class="hero-proof-item"><span>03</span><strong>Flagship event</strong><small>Bathukamma
+                                celebration</small></div>
+                        <div class="hero-proof-item"><span>04</span><strong>Local directory</strong><small>Community
+                                businesses</small></div>
                     </div>
                 </div>
-                <div class="hero-visual">
+                <div class="hero-visual hero-home-visual">
                     <img alt="Melton Maguvalu women together at a community event" class="main hero-team-photo"
                         src="resources/images/community-3.webp" />
-                    <div class="floating-card hero-promise-card"><span class="eyebrow">Our promise</span><strong>Women
+                    <div aria-label="Melton Maguvalu promise" class="hero-promise-card"><span class="eyebrow">Our
+                            promise</span><strong>Women
                             at the
                             heart.</strong>
                         <p>Culture in every connection.</p>
@@ -197,28 +202,97 @@
                             </a>
                         </div>
                     </div>
+                    <p class="community-carousel-hint">Drag, swipe or use the arrows to explore more stories.</p>
                 </div>
             </div>
         </section>
-        <section class="section section-soft">
+
+        <section aria-labelledby="directory-showcase-title" class="section directory-showcase">
             <div class="container">
-                <div class="section-head">
-                    <div>
+                <div class="directory-showcase-shell">
+                    <div class="directory-showcase-intro">
                         <div class="eyebrow">Local business hub</div>
-                        <h2>Discover businesses that strengthen our community.</h2>
+                        <h2 id="directory-showcase-title">Find trusted local businesses.</h2>
+                        <p>Discover women-led and community-friendly services across Melton without leaving the
+                            community ecosystem.</p>
+                        <div class="directory-showcase-actions">
+                            <a class="btn btn-gold" href="directory.html">Browse the directory</a>
+                            <a class="directory-text-link" href="directory.html#list-business">List your business <span
+                                    aria-hidden="true">→</span></a>
+                        </div>
                     </div>
-                    <p>Find women-led and community-friendly services across food, beauty, finance, property, education,
-                        events and more.</p>
+                    <div aria-label="Business directory categories" class="directory-category-rail">
+                        <a href="directory.html?category=food">
+                            <span class="directory-category-index">01</span>
+                            <strong>Food &amp; catering</strong>
+                            <span aria-hidden="true" class="directory-category-arrow">→</span>
+                        </a>
+                        <a href="directory.html?category=beauty">
+                            <span class="directory-category-index">02</span>
+                            <strong>Beauty &amp; fashion</strong>
+                            <span aria-hidden="true" class="directory-category-arrow">→</span>
+                        </a>
+                        <a href="directory.html?category=property">
+                            <span class="directory-category-index">03</span>
+                            <strong>Property &amp; finance</strong>
+                            <span aria-hidden="true" class="directory-category-arrow">→</span>
+                        </a>
+                        <a href="directory.html?category=events">
+                            <span class="directory-category-index">04</span>
+                            <strong>Events &amp; creative</strong>
+                            <span aria-hidden="true" class="directory-category-arrow">→</span>
+                        </a>
+                        <a href="directory.html?category=health">
+                            <span class="directory-category-index">05</span>
+                            <strong>Health &amp; wellbeing</strong>
+                            <span aria-hidden="true" class="directory-category-arrow">→</span>
+                        </a>
+                        <a href="directory.html?category=education">
+                            <span class="directory-category-index">06</span>
+                            <strong>Education &amp; services</strong>
+                            <span aria-hidden="true" class="directory-category-arrow">→</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="directory-preview">
-                    <div class="directory-preview-copy"><span class="tag tag-plum">Community directory</span>
-                        <h3>Shop local. Connect locally. Grow together.</h3>
-                        <p>The directory makes trusted local businesses easier to discover while giving business owners
-                            a year-round platform beyond event sponsorship.</p>
-                        <div class="hero-actions"><a class="btn btn-primary" href="directory.html">Explore the
-                                directory</a><a class="btn btn-light" href="directory.html#list-business">List your
-                                business</a></div>
+            </div>
+        </section>
+
+        <section aria-labelledby="evidence-title" class="section evidence-section">
+            <div class="container">
+                <div class="section-head evidence-head">
+                    <div>
+                        <div class="eyebrow">Community and partner evidence</div>
+                        <h2 id="evidence-title">Visible work. Clear ways to contribute.</h2>
                     </div>
+                    <p>Melton Maguvalu creates practical opportunities for community participation, local business
+                        visibility and event collaboration.</p>
+                </div>
+                <div class="evidence-grid">
+                    <article class="evidence-card evidence-card-featured">
+                        <img alt="Melton Maguvalu volunteers and community leaders together"
+                            src="resources/images/community-3.webp" />
+                        <div>
+                            <span>Community leadership</span>
+                            <h3>Women organising, volunteering and leading.</h3>
+                            <p>Programs and events are shaped by people who understand the local community and its
+                                needs.</p>
+                            <a href="about.html">Meet the community <b aria-hidden="true">→</b></a>
+                        </div>
+                    </article>
+                    <article class="evidence-card">
+                        <span>Flagship event</span>
+                        <h3>Bathukamma creates a high-visibility partnership opportunity.</h3>
+                        <p>Businesses can support a major cultural celebration while connecting with local families.</p>
+                        <a href="partners.html">Explore sponsorship <b aria-hidden="true">→</b></a>
+                    </article>
+                    <article class="evidence-card">
+                        <span>Year-round value</span>
+                        <h3>The business directory keeps local services discoverable.</h3>
+                        <p>Community-friendly businesses have a place to be found beyond a single event or campaign.</p>
+                        <a href="directory.html">Browse the directory <b aria-hidden="true">→</b></a>
+                    </article>
+                </div>
+                <!-- Add only approved, real testimonials here once names, permissions and exact quotes are supplied. -->
             </div>
         </section>
         <section class="section">
@@ -412,6 +486,22 @@
             window.addEventListener("beforeunload", () => {
                 cancelAnimationFrame(animationFrame);
                 window.clearTimeout(resumeTimer);
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const button = document.querySelector(".menu");
+            const nav = document.querySelector("#mobile-navigation");
+            if (!button || !nav) return;
+            const sync = () => button.setAttribute("aria-expanded", nav.classList.contains("open") ? "true" : "false");
+            button.addEventListener("click", () => requestAnimationFrame(sync));
+            document.addEventListener("keydown", event => {
+                if (event.key === "Escape" && nav.classList.contains("open")) {
+                    nav.classList.remove("open");
+                    sync();
+                    button.focus();
+                }
             });
         });
     </script>
