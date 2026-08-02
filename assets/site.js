@@ -213,3 +213,144 @@ function initSharedSite(root = document) {
 
 document.addEventListener("DOMContentLoaded", () => initSharedSite());
 document.addEventListener("sectionsLoaded", () => initSharedSite());
+
+
+
+
+/* Programs page: program flip cards and editorial Maata Muchata feed. */
+(() => {
+  const initialiseProgramCards = () => {
+    document.querySelectorAll(".program-flip-card").forEach(card => {
+      if (card.dataset.programFlipInitialised === "true") return;
+      card.dataset.programFlipInitialised = "true";
+
+      const trigger = card.querySelector(".program-flip-trigger");
+      if (!trigger) return;
+
+      const setFlipped = isFlipped => {
+        card.classList.toggle("is-flipped", isFlipped);
+        trigger.setAttribute("aria-pressed", String(isFlipped));
+      };
+
+      trigger.addEventListener("click", () => {
+        setFlipped(!card.classList.contains("is-flipped"));
+      });
+
+      trigger.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+          setFlipped(false);
+          trigger.blur();
+        }
+      });
+    });
+  };
+
+  const initialisePodcast = async () => {
+    const section = document.querySelector(".podcast-editorial");
+    if (!section || section.dataset.podcastInitialised === "true") return;
+    section.dataset.podcastInitialised = "true";
+
+    const apiKey = window.MELBOURNE_MAGUVALU_YOUTUBE_API_KEY || "";
+    if (!apiKey) return;
+
+    const handle = section.dataset.youtubeHandle || "@melbourne_maguvalu_aus";
+    const list = document.querySelector("#podcastEpisodeList");
+    const featureImage = document.querySelector("#podcastFeatureImage");
+    const featureTitle = document.querySelector("#podcastFeatureTitle");
+    const featureDescription = document.querySelector("#podcastFeatureDescription");
+    const featureDate = document.querySelector("#podcastFeatureDate");
+    const featureLink = document.querySelector("#podcastFeatureLink");
+    const featureButton = document.querySelector("#podcastFeatureButton");
+    const count = document.querySelector("#podcastRailCount");
+
+    if (!list || !featureImage || !featureTitle || !featureLink) return;
+
+    const setFeatured = episode => {
+      featureImage.style.backgroundImage = `url("${episode.thumbnail}")`;
+      featureTitle.textContent = episode.title;
+      featureDescription.textContent =
+        episode.description || "Watch this Maata Muchata conversation on YouTube.";
+      featureDate.textContent = episode.date;
+      featureLink.href = episode.url;
+      featureButton.onclick = () => window.open(episode.url, "_blank", "noopener,noreferrer");
+    };
+
+    try {
+      const searchResponse = await fetch(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${encodeURIComponent(handle)}&maxResults=1&key=${encodeURIComponent(apiKey)}`
+      );
+      if (!searchResponse.ok) throw new Error("Unable to identify YouTube channel.");
+
+      const searchData = await searchResponse.json();
+      const channelId = searchData.items?.[0]?.snippet?.channelId;
+      if (!channelId) throw new Error("YouTube channel not found.");
+
+      const channelResponse = await fetch(
+        `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${encodeURIComponent(channelId)}&key=${encodeURIComponent(apiKey)}`
+      );
+      const channelData = await channelResponse.json();
+      const uploads = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+      if (!uploads) throw new Error("Uploads playlist not found.");
+
+      const playlistResponse = await fetch(
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${encodeURIComponent(uploads)}&maxResults=6&key=${encodeURIComponent(apiKey)}`
+      );
+      if (!playlistResponse.ok) throw new Error("Unable to load episodes.");
+
+      const playlistData = await playlistResponse.json();
+      const episodes = (playlistData.items || []).map(item => ({
+        videoId: item.contentDetails.videoId,
+        title: item.snippet.title,
+        description: item.snippet.description,
+        thumbnail:
+          item.snippet.thumbnails?.high?.url ||
+          item.snippet.thumbnails?.medium?.url ||
+          item.snippet.thumbnails?.default?.url,
+        date: new Date(item.snippet.publishedAt).toLocaleDateString(undefined, {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        }),
+        url: `https://www.youtube.com/watch?v=${item.contentDetails.videoId}`
+      }));
+
+      if (!episodes.length) return;
+
+      setFeatured(episodes[0]);
+      count.textContent = `${episodes.length} latest`;
+
+      list.innerHTML = "";
+      episodes.forEach((episode, index) => {
+        const link = document.createElement("a");
+        link.className = `podcast-rail-item${index === 0 ? " is-active" : ""}`;
+        link.href = episode.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.innerHTML = `
+          <span class="podcast-rail-thumb" style="background-image:url('${episode.thumbnail}')">
+            <b>${String(index + 1).padStart(2, "0")}</b>
+          </span>
+          <span class="podcast-rail-copy">
+            <small>${episode.date}</small>
+            <strong>${episode.title}</strong>
+            <span>${episode.description || "Maata Muchata conversation"}</span>
+          </span>
+          <b class="podcast-rail-arrow" aria-hidden="true">↗</b>
+        `;
+        link.addEventListener("mouseenter", () => setFeatured(episode));
+        link.addEventListener("focus", () => setFeatured(episode));
+        list.appendChild(link);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const init = () => {
+    initialiseProgramCards();
+    initialisePodcast();
+  };
+
+  document.addEventListener("DOMContentLoaded", init);
+  document.addEventListener("sectionsLoaded", init);
+})();
