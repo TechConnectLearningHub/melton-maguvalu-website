@@ -1,3 +1,7 @@
+/* ==========================================================================
+   Dynamic section loader
+   ========================================================================== */
+
 const sections = [
   { id: "header", file: "./resources/sections/header.html" },
   { id: "hero", file: "./resources/sections/hero.html" },
@@ -15,28 +19,73 @@ const sections = [
 
 async function loadSection(section) {
   const container = document.getElementById(section.id);
-  if (!container) return;
+
+  if (!container) {
+    return {
+      id: section.id,
+      status: "skipped"
+    };
+  }
+
+  container.setAttribute("aria-busy", "true");
 
   try {
-    const response = await fetch(section.file);
-    if (!response.ok) throw new Error(`Could not load ${section.file}`);
+    const response = await fetch(section.file, {
+      cache: "no-cache"
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Could not load ${section.file}: ${response.status} ${response.statusText}`
+      );
+    }
+
     container.innerHTML = await response.text();
+    container.removeAttribute("aria-busy");
+
+    return {
+      id: section.id,
+      status: "loaded"
+    };
   } catch (error) {
     console.error(error);
+
     container.innerHTML = "";
+    container.removeAttribute("aria-busy");
+    container.dataset.loadError = "true";
+
+    return {
+      id: section.id,
+      status: "failed",
+      error
+    };
   }
 }
 
 async function loadAllSections() {
   const main = document.getElementById("main-content");
-  if (main) main.classList.add("sections-loading-state");
 
-  // Fetch every section in parallel — each writes to its own container,
-  // so order of arrival doesn't matter, only total load time.
-  await Promise.all(sections.map(loadSection));
+  if (main) {
+    main.classList.add("sections-loading-state");
+    main.setAttribute("aria-busy", "true");
+  }
 
-  if (main) main.classList.remove("sections-loading-state");
-  document.dispatchEvent(new Event("sectionsLoaded"));
+  const results = await Promise.all(sections.map(loadSection));
+
+  if (main) {
+    main.classList.remove("sections-loading-state");
+    main.removeAttribute("aria-busy");
+  }
+
+  document.dispatchEvent(
+    new CustomEvent("sectionsLoaded", {
+      detail: {
+        results,
+        loaded: results.filter(result => result.status === "loaded").length,
+        failed: results.filter(result => result.status === "failed").length
+      }
+    })
+  );
 }
 
 document.addEventListener("DOMContentLoaded", loadAllSections);
