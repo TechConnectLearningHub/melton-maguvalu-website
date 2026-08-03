@@ -1,151 +1,188 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Community Business Directory | Melton Maguvalu</title>
-<meta content="Discover women-led and community-friendly businesses serving Melton and Melbourne's west." name="description"/>
-<link href="resources/images/Melton_Maguvalu_Logo.webp" rel="icon"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Playfair+Display:wght@700;800&amp;display=swap" rel="stylesheet"/>
-<link href="assets/site.css" rel="stylesheet"/>
-<script defer="" src="assets/site.js"></script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title>Community Business Directory | Melton Maguvalu</title>
+    <meta content="Discover women-led and community-friendly businesses serving Melton and Melbourne's west."
+        name="description" />
+    <link href="resources/images/Melton_Maguvalu_Logo.webp" rel="icon" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Playfair+Display:wght@700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="assets/site.css" rel="stylesheet" />
+    <script defer="" src="assets/site.js"></script>
 </head>
+
 <body>
-<header class="site-header">
-<div class="container nav">
-<a aria-label="Melton Maguvalu home" class="brand" href="index.html">
-<img alt="" height="56" src="resources/images/Melton_Maguvalu_Logo_Header.webp" width="56"/>
-<span class="brand-wordmark">MELTON<br/>MAGUVALU</span>
-</a>
-<nav aria-label="Primary navigation" class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="bathukamma.html">Bathukamma</a><a aria-current="page" href="directory.html">Directory</a><a href="partners.html">Partners</a></nav>
-<div class="nav-actions">
-<a class="header-contact" href="contact.html">Contact</a>
-<a class="btn btn-primary header-partner" href="partners.html">Partner with us</a>
-</div>
-<button aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation" class="menu" type="button">☰</button>
-</div>
-<nav aria-label="Mobile navigation" class="mobile-nav container" id="mobile-navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a href="bathukamma.html">Bathukamma</a><a aria-current="page" href="directory.html">Directory</a><a href="partners.html">Partners</a><a href="contact.html">Contact</a></nav>
-</header>
-<main>
-<section class="subhero directory-hero">
-<div class="container">
-<div class="eyebrow">Community business hub</div>
-<h2>Local businesses. Stronger connections.</h2>
-<p>Discover women-led and community-friendly businesses, professionals and services across Melton and
+    <header class="site-header">
+        <div class="container nav">
+            <a aria-label="Melton Maguvalu home" class="brand" href="index.html">
+                <img alt="" height="56" src="resources/images/Melton_Maguvalu_Logo_Header.webp" width="56" />
+                <span class="brand-wordmark">MELTON<br />MAGUVALU</span>
+            </a>
+            <nav aria-label="Primary navigation" class="nav-links"><a href="index.html">Home</a><a
+                    href="about.html">About</a><a href="programs.html">Programs</a><a href="events.html">Events</a><a
+                    href="bathukamma.html">Bathukamma</a><a aria-current="page" href="directory.html">MM Directory</a><a
+                    href="partners.html">Partners</a></nav>
+            <div class="nav-actions">
+                <a class="header-contact" href="contact.html">Contact</a>
+                <a class="btn btn-primary header-partner" href="partners.html">Partner with us</a>
+            </div>
+            <button aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation" class="menu"
+                type="button">☰</button>
+        </div>
+        <nav aria-label="Mobile navigation" class="mobile-nav container" id="mobile-navigation"><a
+                href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a
+                href="events.html">Events</a><a href="bathukamma.html">Bathukamma</a><a aria-current="page"
+                href="directory.html">Directory</a><a href="partners.html">Partners</a><a
+                href="contact.html">Contact</a></nav>
+    </header>
+    <main>
+        <section class="subhero directory-hero">
+            <div class="container">
+                <div class="eyebrow">Community business hub</div>
+                <h2>Local businesses. Stronger connections.</h2>
+                <p>Discover women-led and community-friendly businesses, professionals and services across Melton and
                     Melbourne's west.</p>
-</div>
-</section>
-<section class="section">
-<div class="container">
-<div class="directory-toolbar"><label class="search-box"><span>Search directory</span><input id="businessSearch" placeholder="Search catering, finance, beauty, education…" type="search"/></label>
-<div aria-label="Business categories" class="filter-chips"><button aria-pressed="true" class="active" data-filter="all">All</button><button aria-pressed="false" data-filter="food">Food</button><button aria-pressed="false" data-filter="beauty">Beauty</button><button aria-pressed="false" data-filter="finance">Finance</button><button aria-pressed="false" data-filter="events">Events</button><button aria-pressed="false" data-filter="health">Health</button><button aria-pressed="false" data-filter="education">Education</button></div>
-</div>
-<div aria-live="polite" class="business-grid" id="businessGrid">
-<article class="business-card" data-category="food" data-search="food catering sweets restaurant home catering"><span>Food &amp; catering</span>
-<h3>Community Caterers</h3>
-<p>Home catering, festive sweets and event dining services from local providers.</p>
-<div class="business-meta">Melton · By appointment</div><a href="#list-business">View or claim
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="directory-toolbar"><label class="search-box"><span>Search directory</span><input
+                            id="businessSearch" placeholder="Search catering, finance, beauty, education…"
+                            type="search" /></label>
+                    <div aria-label="Business categories" class="filter-chips"><button aria-pressed="true"
+                            class="active" data-filter="all">All</button><button aria-pressed="false"
+                            data-filter="food">Food</button><button aria-pressed="false"
+                            data-filter="beauty">Beauty</button><button aria-pressed="false"
+                            data-filter="finance">Finance</button><button aria-pressed="false"
+                            data-filter="events">Events</button><button aria-pressed="false"
+                            data-filter="health">Health</button><button aria-pressed="false"
+                            data-filter="education">Education</button></div>
+                </div>
+                <div aria-live="polite" class="business-grid" id="businessGrid">
+                    <article class="business-card" data-category="food"
+                        data-search="food catering sweets restaurant home catering"><span>Food &amp; catering</span>
+                        <h3>Community Caterers</h3>
+                        <p>Home catering, festive sweets and event dining services from local providers.</p>
+                        <div class="business-meta">Melton · By appointment</div><a href="#list-business">View or claim
                             listing →</a>
-</article>
-<article class="business-card" data-category="beauty" data-search="beauty makeup fashion jewellery saree styling"><span>Beauty &amp; fashion</span>
-<h3>Beauty &amp; Style Collective</h3>
-<p>Makeup artists, boutiques, jewellery, saree draping and styling services.</p>
-<div class="business-meta">Melbourne West · Mobile services</div><a href="#list-business">View
+                    </article>
+                    <article class="business-card" data-category="beauty"
+                        data-search="beauty makeup fashion jewellery saree styling"><span>Beauty &amp; fashion</span>
+                        <h3>Beauty &amp; Style Collective</h3>
+                        <p>Makeup artists, boutiques, jewellery, saree draping and styling services.</p>
+                        <div class="business-meta">Melbourne West · Mobile services</div><a href="#list-business">View
                             or claim listing →</a>
-</article>
-<article class="business-card" data-category="finance" data-search="finance mortgage property real estate insurance accounting"><span>Property &amp;
+                    </article>
+                    <article class="business-card" data-category="finance"
+                        data-search="finance mortgage property real estate insurance accounting"><span>Property &amp;
                             finance</span>
-<h3>Local Finance Professionals</h3>
-<p>Connect with brokers, agents, accountants and financial service providers.</p>
-<div class="business-meta">Melton · Online and in-person</div><a href="#list-business">View or
+                        <h3>Local Finance Professionals</h3>
+                        <p>Connect with brokers, agents, accountants and financial service providers.</p>
+                        <div class="business-meta">Melton · Online and in-person</div><a href="#list-business">View or
                             claim listing →</a>
-</article>
-<article class="business-card" data-category="events" data-search="events photographer decorator dj venue florist video"><span>Events &amp;
+                    </article>
+                    <article class="business-card" data-category="events"
+                        data-search="events photographer decorator dj venue florist video"><span>Events &amp;
                             creative</span>
-<h3>Celebration Services</h3>
-<p>Photographers, decorators, DJs, florists, venues and cultural event suppliers.</p>
-<div class="business-meta">Greater Melbourne · Event bookings</div><a href="#list-business">View
+                        <h3>Celebration Services</h3>
+                        <p>Photographers, decorators, DJs, florists, venues and cultural event suppliers.</p>
+                        <div class="business-meta">Greater Melbourne · Event bookings</div><a href="#list-business">View
                             or claim listing →</a>
-</article>
-<article class="business-card" data-category="health" data-search="health wellbeing doctor physio counsellor yoga fitness"><span>Health &amp;
+                    </article>
+                    <article class="business-card" data-category="health"
+                        data-search="health wellbeing doctor physio counsellor yoga fitness"><span>Health &amp;
                             wellbeing</span>
-<h3>Wellbeing Network</h3>
-<p>Community-friendly health, fitness, counselling and wellbeing practitioners.</p>
-<div class="business-meta">Melton area · Check availability</div><a href="#list-business">View
+                        <h3>Wellbeing Network</h3>
+                        <p>Community-friendly health, fitness, counselling and wellbeing practitioners.</p>
+                        <div class="business-meta">Melton area · Check availability</div><a href="#list-business">View
                             or claim listing →</a>
-</article>
-<article class="business-card" data-category="education" data-search="education tutor childcare coaching training migration legal"><span>Education &amp;
+                    </article>
+                    <article class="business-card" data-category="education"
+                        data-search="education tutor childcare coaching training migration legal"><span>Education &amp;
                             services</span>
-<h3>Learning &amp; Professional Services</h3>
-<p>Tutors, coaches, childcare, legal, migration and professional support services.</p>
-<div class="business-meta">Melbourne West · Various hours</div><a href="#list-business">View or
+                        <h3>Learning &amp; Professional Services</h3>
+                        <p>Tutors, coaches, childcare, legal, migration and professional support services.</p>
+                        <div class="business-meta">Melbourne West · Various hours</div><a href="#list-business">View or
                             claim listing →</a>
-</article>
-<div class="business-empty" id="businessEmpty">No listings match that search yet. Try another
+                    </article>
+                    <div class="business-empty" id="businessEmpty">No listings match that search yet. Try another
                         category or list a business below.</div>
-</div>
-<p class="directory-disclaimer">Directory entries shown are category examples until verified business
+                </div>
+                <p class="directory-disclaimer">Directory entries shown are category examples until verified business
                     profiles are supplied. Melton Maguvalu should define an approval and review process before launch.
                 </p>
-</div>
-</section>
-<section class="section section-soft" id="list-business">
-<div class="container contact-grid">
-<div>
-<div class="eyebrow">Join the directory</div>
-<h2>Put your business in front of the community.</h2>
-<p style="margin-top:22px">Directory participation can become a year-round business benefit, while
+            </div>
+        </section>
+        <section class="section section-soft" id="list-business">
+            <div class="container contact-grid">
+                <div>
+                    <div class="eyebrow">Join the directory</div>
+                    <h2>Put your business in front of the community.</h2>
+                    <p style="margin-top:22px">Directory participation can become a year-round business benefit, while
                         event sponsorship offers higher visibility around Bathukamma and other major celebrations.</p>
-<div class="list">
-<div>Women-led and local businesses welcomed</div>
-<div>Profile, category and contact visibility</div>
-<div>Optional event and sponsorship opportunities</div>
-<div>Community standards and approval process</div>
-</div>
-</div>
-<form class="form" data-demo=""><input name="business" placeholder="Business name" required=""/><input name="contact" placeholder="Contact person" required=""/><input name="email" placeholder="Email address" required="" type="email"/><input name="phone" placeholder="Phone number"/><select class="full" name="category" required="">
-<option value="">Choose a category</option>
-<option>Food &amp; catering</option>
-<option>Beauty &amp; fashion</option>
-<option>Property &amp; finance</option>
-<option>Events &amp; creative</option>
-<option>Health &amp; wellbeing</option>
-<option>Education &amp; professional services</option>
-<option>Other</option>
-</select><textarea name="description" placeholder="Tell us about your business, service area and community connection" required="" rows="5"></textarea><button class="btn btn-primary full" type="submit">Submit business
+                    <div class="list">
+                        <div>Women-led and local businesses welcomed</div>
+                        <div>Profile, category and contact visibility</div>
+                        <div>Optional event and sponsorship opportunities</div>
+                        <div>Community standards and approval process</div>
+                    </div>
+                </div>
+                <form class="form" data-demo=""><input name="business" placeholder="Business name" required="" /><input
+                        name="contact" placeholder="Contact person" required="" /><input name="email"
+                        placeholder="Email address" required="" type="email" /><input name="phone"
+                        placeholder="Phone number" /><select class="full" name="category" required="">
+                        <option value="">Choose a category</option>
+                        <option>Food &amp; catering</option>
+                        <option>Beauty &amp; fashion</option>
+                        <option>Property &amp; finance</option>
+                        <option>Events &amp; creative</option>
+                        <option>Health &amp; wellbeing</option>
+                        <option>Education &amp; professional services</option>
+                        <option>Other</option>
+                    </select><textarea name="description"
+                        placeholder="Tell us about your business, service area and community connection" required=""
+                        rows="5"></textarea><button class="btn btn-primary full" type="submit">Submit business
                         interest</button>
-<p class="notice full">Demo form only. Connect this to an approved email, CRM or form service before
+                    <p class="notice full">Demo form only. Connect this to an approved email, CRM or form service before
                         launch.</p>
-</form>
-</div>
-</section>
-</main>
-<footer class="footer">
-<div class="container footer-grid">
-<div><a class="brand" href="index.html"><img alt="" src="resources/images/Melton_Maguvalu_Logo.webp"/><span>MELTON<br/>MAGUVALU</span></a>
-<p style="margin-top:18px">Powered by women. Rooted in tradition. Growing through community.</p>
-</div>
-<div>
-<h4>Explore</h4>
-<div class="footer-links"><a href="about.html">About</a><a href="programs.html">Programs</a><a href="events.html">Events</a></div>
-</div>
-<div>
-<h4>Community</h4>
-<div class="footer-links"><a href="bathukamma.html">Bathukamma</a><a href="directory.html">Business
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div><a class="brand" href="index.html"><img alt=""
+                        src="resources/images/Melton_Maguvalu_Logo.webp" /><span>MELTON<br />MAGUVALU</span></a>
+                <p style="margin-top:18px">Powered by women. Rooted in tradition. Growing through community.</p>
+            </div>
+            <div>
+                <h4>Explore</h4>
+                <div class="footer-links"><a href="about.html">About</a><a href="programs.html">Programs</a><a
+                        href="events.html">Events</a></div>
+            </div>
+            <div>
+                <h4>Community</h4>
+                <div class="footer-links"><a href="bathukamma.html">Bathukamma</a><a href="directory.html">Business
                         directory</a><a href="gallery.html">Gallery</a></div>
-</div>
-<div>
-<h4>Connect</h4>
-<div class="footer-links"><a href="partners.html">Partnerships</a><a href="contact.html">Contact</a><a href="#list-business">List a business</a></div>
-</div>
-</div>
-<div class="container" style="margin-top:46px;padding-top:24px;border-top:1px solid #382b35">
-<p>© 2026 Melton Maguvalu. Community information and directory listings should be verified before
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <div class="footer-links"><a href="partners.html">Partnerships</a><a href="contact.html">Contact</a><a
+                        href="#list-business">List a business</a></div>
+            </div>
+        </div>
+        <div class="container" style="margin-top:46px;padding-top:24px;border-top:1px solid #382b35">
+            <p>© 2026 Melton Maguvalu. Community information and directory listings should be verified before
                 publication.</p>
-</div>
-</footer>
+        </div>
+    </footer>
 </body>
+
 </html>

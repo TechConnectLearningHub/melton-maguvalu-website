@@ -1,42 +1,39 @@
-<section class="section business-section" id="business" aria-labelledby="business-title">
-  <div class="section-heading split-heading">
-    <div>
-      <span class="section-kicker">Business Hub</span>
-      <h2 id="business-title">A warmer, more useful business directory.</h2>
-    </div>
-    <p>Make the directory feel like a trusted marketplace for women-owned and community-friendly businesses.</p>
-  </div>
-
-  <div class="business-toolbar">
-    <input type="search" id="businessSearch" placeholder="Search food, beauty, finance, property, education..."
-      aria-label="Search businesses">
-    <div class="filter-chips" aria-label="Business categories">
-      <button data-filter="all" class="active" aria-pressed="true">All</button>
-      <button data-filter="food" aria-pressed="false">Food</button>
-      <button data-filter="beauty" aria-pressed="false">Beauty</button>
-      <button data-filter="finance" aria-pressed="false">Finance</button>
-      <button data-filter="events" aria-pressed="false">Events</button>
-    </div>
-  </div>
-
-  <div class="business-grid" id="businessGrid" aria-live="polite">
-    <article class="business-card" data-category="food"><span>Food</span>
-      <h3>Home Catering Spotlight</h3>
-      <p>Showcase local caterers with photos, suburb, contact and booking CTA.</p><a href="#contact">List a business</a>
-    </article>
-    <article class="business-card" data-category="beauty"><span>Beauty</span>
-      <h3>Beauty & Fashion</h3>
-      <p>Feature makeup artists, boutiques, jewellery and styling services.</p><a href="#contact">Get featured</a>
-    </article>
-    <article class="business-card" data-category="finance"><span>Finance</span>
-      <h3>Property & Finance</h3>
-      <p>Help members find trusted brokers, agents and financial advisers.</p><a href="#contact">Submit details</a>
-    </article>
-    <article class="business-card" data-category="events"><span>Events</span>
-      <h3>Event Services</h3>
-      <p>Photographers, decorators, DJs, venues and cultural event suppliers.</p><a href="#contact">Join the hub</a>
-    </article>
-    <div class="business-empty" id="businessEmpty">No businesses match that search yet. <a href="#contact">List yours
+<section aria-labelledby="business-title" class="section business-section" id="business">
+<div class="section-heading split-heading">
+<div>
+<span class="section-kicker">Business Hub</span>
+<h2 id="business-title">A warmer, more useful business directory.</h2>
+</div>
+<p>Make the directory feel like a trusted marketplace for women-owned and community-friendly businesses.</p>
+</div>
+<div class="business-toolbar">
+<input aria-label="Search businesses" id="businessSearch" placeholder="Search food, beauty, finance, property, education..." type="search"/>
+<div aria-label="Business categories" class="filter-chips">
+<button aria-pressed="true" class="active" data-filter="all">All</button>
+<button aria-pressed="false" data-filter="food">Food</button>
+<button aria-pressed="false" data-filter="beauty">Beauty</button>
+<button aria-pressed="false" data-filter="finance">Finance</button>
+<button aria-pressed="false" data-filter="events">Events</button>
+</div>
+</div>
+<div aria-live="polite" class="business-grid" id="businessGrid">
+<article class="business-card" data-category="food"><span>Food</span>
+<h3>Home Catering Spotlight</h3>
+<p>Showcase local caterers with photos, suburb, contact and booking CTA.</p><a href="#contact">List a business</a>
+</article>
+<article class="business-card" data-category="beauty"><span>Beauty</span>
+<h3>Beauty &amp; Fashion</h3>
+<p>Feature makeup artists, boutiques, jewellery and styling services.</p><a href="#contact">Get featured</a>
+</article>
+<article class="business-card" data-category="finance"><span>Finance</span>
+<h3>Property &amp; Finance</h3>
+<p>Help members find trusted brokers, agents and financial advisers.</p><a href="#contact">Submit details</a>
+</article>
+<article class="business-card" data-category="events"><span>Events</span>
+<h3>Event Services</h3>
+<p>Photographers, decorators, DJs, venues and cultural event suppliers.</p><a href="#contact">Join the hub</a>
+</article>
+<div class="business-empty" id="businessEmpty">No businesses match that search yet. <a href="#contact">List yours
         here</a> or try a different category.</div>
-  </div>
+</div>
 </section>
