@@ -16,6 +16,7 @@
     <link href="assets/site.css" rel="stylesheet" />
     <script defer="" src="assets/site.js?v=20260803-2"></script>
     <link href="assets/responsive-refinement.css?v=5" rel="stylesheet" />
+    <link href="assets/editorial-polish.css?v=2" rel="stylesheet" />
   </head>
   <body>
     <header class="site-header">
@@ -87,30 +88,69 @@
               <div>Program or service collaboration</div>
             </div>
           </div>
-          <form class="form" data-demo="">
+          <form
+            class="form"
+            action="https://formsubmit.co/meltonmaguvalu@gmail.com"
+            method="POST"
+          >
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Melton Maguvalu website enquiry"
+            />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input
+              type="text"
+              name="_honey"
+              tabindex="-1"
+              autocomplete="off"
+              style="display: none"
+              aria-hidden="true"
+            />
             <input
               aria-label="First name"
+              autocomplete="given-name"
+              name="first_name"
               placeholder="First name"
               required=""
             /><input
               aria-label="Last name"
+              autocomplete="family-name"
+              name="last_name"
               placeholder="Last name"
               required=""
             /><input
+              aria-label="Email address"
+              autocomplete="email"
               class="full"
+              name="email"
               placeholder="Email address"
               required=""
               type="email"
-            /><select aria-label="Enquiry type" class="full">
-              <option>Choose enquiry type</option>
+            /><select
+              aria-label="Enquiry type"
+              class="full"
+              name="enquiry_type"
+              required=""
+            >
+              <option value="" selected="" disabled="">
+                Choose enquiry type
+              </option>
               <option>Join the community</option>
               <option>Volunteer</option>
               <option>Bathukamma sponsorship</option>
               <option>Program partnership</option></select
-            ><textarea placeholder="How can we help?" rows="7"></textarea>
+            ><textarea
+              aria-label="Message"
+              class="full"
+              name="message"
+              placeholder="How can we help?"
+              required=""
+              rows="7"
+            ></textarea>
             <p class="full notice">
-              Demo form only. Connect this form to an email or CRM service
-              before launch.
+              Your enquiry will be emailed securely to the Melton Maguvalu team.
             </p>
             <button class="btn btn-primary full" type="submit">
               Send enquiry
