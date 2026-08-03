@@ -17,11 +17,7 @@ Example:
 
 ```html
 <article class="partner-logo-card">
-  <img
-    class="partner-logo-image"
-    src="resources/images/partner-name.webp"
-    alt="Partner Name logo"
-  />
+  <img class="partner-logo-image" src="resources/images/partner-name.webp" alt="Partner Name logo">
   <div>
     <strong>Partner Name</strong>
     <small>Community Partner</small>
