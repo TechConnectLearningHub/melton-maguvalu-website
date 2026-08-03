@@ -3,11 +3,11 @@
    ========================================================================== */
 
 function initDemoForms(root = document) {
-  root.querySelectorAll("form[data-demo]").forEach(form => {
+  root.querySelectorAll("form[data-demo]").forEach((form) => {
     if (form.dataset.demoInitialised === "true") return;
     form.dataset.demoInitialised = "true";
 
-    form.addEventListener("submit", event => {
+    form.addEventListener("submit", (event) => {
       event.preventDefault();
 
       const button = form.querySelector("button");
@@ -34,15 +34,14 @@ function initBusinessDirectory(root = document) {
     const query = search.value.trim().toLowerCase();
     let visible = 0;
 
-    cards.forEach(card => {
+    cards.forEach((card) => {
       const category = card.dataset.category || "";
-      const haystack = `${card.dataset.search || ""} ${card.textContent || ""}`.toLowerCase();
+      const haystack =
+        `${card.dataset.search || ""} ${card.textContent || ""}`.toLowerCase();
 
-      const matchesFilter =
-        activeFilter === "all" || category === activeFilter;
+      const matchesFilter = activeFilter === "all" || category === activeFilter;
 
-      const matchesSearch =
-        !query || haystack.includes(query);
+      const matchesSearch = !query || haystack.includes(query);
 
       const shouldShow = matchesFilter && matchesSearch;
 
@@ -58,11 +57,11 @@ function initBusinessDirectory(root = document) {
 
   search.addEventListener("input", updateDirectory);
 
-  buttons.forEach(button => {
+  buttons.forEach((button) => {
     button.addEventListener("click", () => {
       activeFilter = button.dataset.filter || "all";
 
-      buttons.forEach(item => {
+      buttons.forEach((item) => {
         const isActive = item === button;
         item.classList.toggle("active", isActive);
         item.setAttribute("aria-pressed", String(isActive));
@@ -76,25 +75,36 @@ function initBusinessDirectory(root = document) {
 }
 
 function initValueFlipCards(root = document) {
-  root.querySelectorAll(".value-flip-card").forEach(card => {
+  const cards = [...root.querySelectorAll(".value-flip-card")];
+
+  const setFlipped = (card, isFlipped) => {
+    const trigger = card.querySelector(".value-flip-trigger");
+    card.classList.toggle("is-flipped", isFlipped);
+    trigger?.setAttribute("aria-pressed", String(isFlipped));
+  };
+
+  const closeOtherCards = (activeCard) => {
+    cards.forEach((card) => {
+      if (card !== activeCard) setFlipped(card, false);
+    });
+  };
+
+  cards.forEach((card) => {
     if (card.dataset.flipInitialised === "true") return;
     card.dataset.flipInitialised = "true";
 
     const trigger = card.querySelector(".value-flip-trigger");
     if (!trigger) return;
 
-    const setFlipped = isFlipped => {
-      card.classList.toggle("is-flipped", isFlipped);
-      trigger.setAttribute("aria-pressed", String(isFlipped));
-    };
-
     trigger.addEventListener("click", () => {
-      setFlipped(!card.classList.contains("is-flipped"));
+      const willOpen = !card.classList.contains("is-flipped");
+      if (willOpen) closeOtherCards(card);
+      setFlipped(card, willOpen);
     });
 
-    trigger.addEventListener("keydown", event => {
+    trigger.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        setFlipped(false);
+        setFlipped(card, false);
         trigger.blur();
       }
     });
@@ -107,18 +117,18 @@ function initSharedSocialLinks(root = document) {
     {
       name: "Instagram",
       href: "https://www.instagram.com/melbourne_maguvalu_aus/",
-      path: "M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm10.5 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
+      path: "M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm10.5 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z",
     },
     {
       name: "Facebook",
       href: "https://www.facebook.com/profile.php?id=61579073323846",
-      path: "M13.7 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5H17V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.4V11H7.5v3h2.8v8h3.4Z"
+      path: "M13.7 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5H17V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.4V11H7.5v3h2.8v8h3.4Z",
     },
     {
       name: "YouTube",
       href: "https://www.youtube.com/@MelbourneMaguvalu",
-      path: "M23 12s0-3.5-.4-5.2a3 3 0 0 0-2.1-2.1C18.7 4.2 12 4.2 12 4.2s-6.7 0-8.5.5a3 3 0 0 0-2.1 2.1C1 8.5 1 12 1 12s0 3.5.4 5.2a3 3 0 0 0 2.1 2.1c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a3 3 0 0 0 2.1-2.1C23 15.5 23 12 23 12Zm-13.2 3.4V8.6l6 3.4-6 3.4Z"
-    }
+      path: "M23 12s0-3.5-.4-5.2a3 3 0 0 0-2.1-2.1C18.7 4.2 12 4.2 12 4.2s-6.7 0-8.5.5a3 3 0 0 0-2.1 2.1C1 8.5 1 12 1 12s0 3.5.4 5.2a3 3 0 0 0 2.1 2.1c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a3 3 0 0 0 2.1-2.1C23 15.5 23 12 23 12Zm-13.2 3.4V8.6l6 3.4-6 3.4Z",
+    },
   ];
 
   const makeLinks = () => {
@@ -142,7 +152,7 @@ function initSharedSocialLinks(root = document) {
     return group;
   };
 
-  root.querySelectorAll(".site-header").forEach(header => {
+  root.querySelectorAll(".site-header").forEach((header) => {
     if (header.dataset.sharedHeaderInitialised === "true") return;
     header.dataset.sharedHeaderInitialised = "true";
 
@@ -156,7 +166,7 @@ function initSharedSocialLinks(root = document) {
       desktopCommunity.className = "header-community";
       desktopCommunity.setAttribute(
         "aria-label",
-        "Join our community on social media"
+        "Join our community on social media",
       );
       desktopCommunity.innerHTML = "<span>Join our community</span>";
       desktopCommunity.appendChild(makeLinks());
@@ -168,7 +178,7 @@ function initSharedSocialLinks(root = document) {
       mobileHeaderSocials.className = "mobile-header-socials";
       mobileHeaderSocials.setAttribute(
         "aria-label",
-        "Join our community on social media"
+        "Join our community on social media",
       );
       mobileHeaderSocials.appendChild(makeLinks());
       nav.insertBefore(mobileHeaderSocials, menu);
@@ -188,7 +198,7 @@ function initSharedSocialLinks(root = document) {
       menu.setAttribute("aria-controls", mobileNav.id);
       menu.setAttribute(
         "aria-expanded",
-        String(mobileNav.classList.contains("open"))
+        String(mobileNav.classList.contains("open")),
       );
 
       menu.addEventListener("click", () => {
@@ -197,7 +207,7 @@ function initSharedSocialLinks(root = document) {
         menu.setAttribute("aria-expanded", String(isOpen));
         menu.setAttribute(
           "aria-label",
-          isOpen ? "Close navigation" : "Open navigation"
+          isOpen ? "Close navigation" : "Open navigation",
         );
       });
     }
@@ -214,31 +224,39 @@ function initSharedSite(root = document) {
 document.addEventListener("DOMContentLoaded", () => initSharedSite());
 document.addEventListener("sectionsLoaded", () => initSharedSite());
 
-
-
-
 /* Programs page: program flip cards and editorial Maata Muchata feed. */
 (() => {
   const initialiseProgramCards = () => {
-    document.querySelectorAll(".program-flip-card").forEach(card => {
+    const cards = [...document.querySelectorAll(".program-flip-card")];
+
+    const setFlipped = (card, isFlipped) => {
+      const trigger = card.querySelector(".program-flip-trigger");
+      card.classList.toggle("is-flipped", isFlipped);
+      trigger?.setAttribute("aria-pressed", String(isFlipped));
+    };
+
+    const closeOtherCards = (activeCard) => {
+      cards.forEach((card) => {
+        if (card !== activeCard) setFlipped(card, false);
+      });
+    };
+
+    cards.forEach((card) => {
       if (card.dataset.programFlipInitialised === "true") return;
       card.dataset.programFlipInitialised = "true";
 
       const trigger = card.querySelector(".program-flip-trigger");
       if (!trigger) return;
 
-      const setFlipped = isFlipped => {
-        card.classList.toggle("is-flipped", isFlipped);
-        trigger.setAttribute("aria-pressed", String(isFlipped));
-      };
-
       trigger.addEventListener("click", () => {
-        setFlipped(!card.classList.contains("is-flipped"));
+        const willOpen = !card.classList.contains("is-flipped");
+        if (willOpen) closeOtherCards(card);
+        setFlipped(card, willOpen);
       });
 
-      trigger.addEventListener("keydown", event => {
+      trigger.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
-          setFlipped(false);
+          setFlipped(card, false);
           trigger.blur();
         }
       });
@@ -257,7 +275,9 @@ document.addEventListener("sectionsLoaded", () => initSharedSite());
     const list = document.querySelector("#podcastEpisodeList");
     const featureImage = document.querySelector("#podcastFeatureImage");
     const featureTitle = document.querySelector("#podcastFeatureTitle");
-    const featureDescription = document.querySelector("#podcastFeatureDescription");
+    const featureDescription = document.querySelector(
+      "#podcastFeatureDescription",
+    );
     const featureDate = document.querySelector("#podcastFeatureDate");
     const featureLink = document.querySelector("#podcastFeatureLink");
     const featureButton = document.querySelector("#podcastFeatureButton");
@@ -265,40 +285,44 @@ document.addEventListener("sectionsLoaded", () => initSharedSite());
 
     if (!list || !featureImage || !featureTitle || !featureLink) return;
 
-    const setFeatured = episode => {
+    const setFeatured = (episode) => {
       featureImage.style.backgroundImage = `url("${episode.thumbnail}")`;
       featureTitle.textContent = episode.title;
       featureDescription.textContent =
-        episode.description || "Watch this Maata Muchata conversation on YouTube.";
+        episode.description ||
+        "Watch this Maata Muchata conversation on YouTube.";
       featureDate.textContent = episode.date;
       featureLink.href = episode.url;
-      featureButton.onclick = () => window.open(episode.url, "_blank", "noopener,noreferrer");
+      featureButton.onclick = () =>
+        window.open(episode.url, "_blank", "noopener,noreferrer");
     };
 
     try {
       const searchResponse = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${encodeURIComponent(handle)}&maxResults=1&key=${encodeURIComponent(apiKey)}`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&q=${encodeURIComponent(handle)}&maxResults=1&key=${encodeURIComponent(apiKey)}`,
       );
-      if (!searchResponse.ok) throw new Error("Unable to identify YouTube channel.");
+      if (!searchResponse.ok)
+        throw new Error("Unable to identify YouTube channel.");
 
       const searchData = await searchResponse.json();
       const channelId = searchData.items?.[0]?.snippet?.channelId;
       if (!channelId) throw new Error("YouTube channel not found.");
 
       const channelResponse = await fetch(
-        `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${encodeURIComponent(channelId)}&key=${encodeURIComponent(apiKey)}`
+        `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${encodeURIComponent(channelId)}&key=${encodeURIComponent(apiKey)}`,
       );
       const channelData = await channelResponse.json();
-      const uploads = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+      const uploads =
+        channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
       if (!uploads) throw new Error("Uploads playlist not found.");
 
       const playlistResponse = await fetch(
-        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${encodeURIComponent(uploads)}&maxResults=6&key=${encodeURIComponent(apiKey)}`
+        `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${encodeURIComponent(uploads)}&maxResults=6&key=${encodeURIComponent(apiKey)}`,
       );
       if (!playlistResponse.ok) throw new Error("Unable to load episodes.");
 
       const playlistData = await playlistResponse.json();
-      const episodes = (playlistData.items || []).map(item => ({
+      const episodes = (playlistData.items || []).map((item) => ({
         videoId: item.contentDetails.videoId,
         title: item.snippet.title,
         description: item.snippet.description,
@@ -309,9 +333,9 @@ document.addEventListener("sectionsLoaded", () => initSharedSite());
         date: new Date(item.snippet.publishedAt).toLocaleDateString(undefined, {
           day: "numeric",
           month: "short",
-          year: "numeric"
+          year: "numeric",
         }),
-        url: `https://www.youtube.com/watch?v=${item.contentDetails.videoId}`
+        url: `https://www.youtube.com/watch?v=${item.contentDetails.videoId}`,
       }));
 
       if (!episodes.length) return;

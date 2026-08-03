@@ -12,7 +12,7 @@ function initSiteInteractions() {
   if (contactForm && contactForm.dataset.contactInitialised !== "true") {
     contactForm.dataset.contactInitialised = "true";
 
-    contactForm.addEventListener("submit", event => {
+    contactForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
       const submitBtn = contactForm.querySelector("button[type='submit']");
@@ -37,17 +37,19 @@ function initSiteInteractions() {
   }
 
   /* ---------- Quick actions / journey cards pre-fill the interest field ---------- */
-  root.querySelectorAll("[data-interest]").forEach(link => {
+  root.querySelectorAll("[data-interest]").forEach((link) => {
     if (link.dataset.interestInitialised === "true") return;
     link.dataset.interestInitialised = "true";
 
     link.addEventListener("click", () => {
-      const interestField = root.querySelector(".contact-form [name='interest']");
+      const interestField = root.querySelector(
+        ".contact-form [name='interest']",
+      );
       if (!interestField) return;
 
       const value = link.dataset.interest;
       const match = Array.from(interestField.options).find(
-        option => option.value === value
+        (option) => option.value === value,
       );
 
       if (!match) return;
@@ -75,15 +77,14 @@ function initSiteInteractions() {
       const term = search.value.toLowerCase().trim();
       let visibleCount = 0;
 
-      cards.forEach(card => {
+      cards.forEach((card) => {
         const category = card.dataset.category || "";
         const text = card.textContent.toLowerCase();
 
         const matchesFilter =
           activeFilter === "all" || category === activeFilter;
 
-        const matchesSearch =
-          !term || text.includes(term);
+        const matchesSearch = !term || text.includes(term);
 
         const shouldShow = matchesFilter && matchesSearch;
 
@@ -99,9 +100,9 @@ function initSiteInteractions() {
 
     search.addEventListener("input", applyBusinessFilters);
 
-    filterButtons.forEach(button => {
+    filterButtons.forEach((button) => {
       button.addEventListener("click", () => {
-        filterButtons.forEach(item => {
+        filterButtons.forEach((item) => {
           item.classList.remove("active");
           item.setAttribute("aria-pressed", "false");
         });
@@ -175,14 +176,14 @@ function initSiteInteractions() {
   }
 
   /* ---------- Accessible values flip cards ---------- */
-  root.querySelectorAll(".value-flip-card").forEach(card => {
+  root.querySelectorAll(".value-flip-card").forEach((card) => {
     if (card.dataset.flipInitialised === "true") return;
     card.dataset.flipInitialised = "true";
 
     const trigger = card.querySelector(".value-flip-trigger");
     if (!trigger) return;
 
-    const setFlipped = isFlipped => {
+    const setFlipped = (isFlipped) => {
       card.classList.toggle("is-flipped", isFlipped);
       trigger.setAttribute("aria-pressed", String(isFlipped));
     };
@@ -191,7 +192,7 @@ function initSiteInteractions() {
       setFlipped(!card.classList.contains("is-flipped"));
     });
 
-    trigger.addEventListener("keydown", event => {
+    trigger.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         setFlipped(false);
         trigger.blur();
@@ -202,21 +203,21 @@ function initSiteInteractions() {
   /* ---------- Scroll-spy: highlight current section ---------- */
   const navLinks = [
     ...root.querySelectorAll(
-      ".desktop-nav a[href^='#'], .bottom-nav a[href^='#']"
-    )
+      ".desktop-nav a[href^='#'], .bottom-nav a[href^='#']",
+    ),
   ];
 
   const sectionIds = [
     ...new Set(
       navLinks
-        .map(link => link.getAttribute("href"))
-        .filter(href => href && href.length > 1)
-        .map(href => href.slice(1))
-    )
+        .map((link) => link.getAttribute("href"))
+        .filter((href) => href && href.length > 1)
+        .map((href) => href.slice(1)),
+    ),
   ];
 
   const sectionEls = sectionIds
-    .map(id => root.getElementById(id))
+    .map((id) => root.getElementById(id))
     .filter(Boolean);
 
   if (
@@ -226,8 +227,8 @@ function initSiteInteractions() {
   ) {
     root.documentElement.dataset.scrollSpyInitialised = "true";
 
-    const setActive = id => {
-      navLinks.forEach(link => {
+    const setActive = (id) => {
+      navLinks.forEach((link) => {
         const isMatch = link.getAttribute("href") === `#${id}`;
         link.classList.toggle("active", isMatch);
         link.toggleAttribute("aria-current", isMatch);
@@ -235,20 +236,20 @@ function initSiteInteractions() {
     };
 
     const observer = new IntersectionObserver(
-      entries => {
+      (entries) => {
         const visible = entries
-          .filter(entry => entry.isIntersecting)
+          .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
         if (visible) setActive(visible.target.id);
       },
       {
         rootMargin: "-40% 0px -50% 0px",
-        threshold: [0, 0.25, 0.5, 0.75, 1]
-      }
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      },
     );
 
-    sectionEls.forEach(section => observer.observe(section));
+    sectionEls.forEach((section) => observer.observe(section));
   }
 }
 

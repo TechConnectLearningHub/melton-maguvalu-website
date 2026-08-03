@@ -1,0 +1,655 @@
+/* Melbourne Maguvalu — responsive typography and layout refinement
+   Final cascade layer intentionally loaded after page CSS. */
+
+:root {
+  --ref-display-xl: clamp(3.7rem, 5.6vw, 5.6rem);
+  --ref-display-lg: clamp(3rem, 4.4vw, 4.5rem);
+  --ref-display-md: clamp(2.35rem, 3.25vw, 3.35rem);
+  --ref-display-sm: clamp(1.85rem, 2.25vw, 2.5rem);
+  --ref-lead: clamp(1.05rem, 1.25vw, 1.2rem);
+  --ref-body: 1rem;
+  --ref-content-width: 68ch;
+}
+
+/* Consistent readable copy */
+body {
+  font-size: 16px;
+}
+p,
+li,
+label,
+input,
+textarea,
+select {
+  line-height: 1.65;
+}
+.section {
+  padding-block: clamp(4rem, 7vw, 7rem);
+}
+.eyebrow {
+  font-size: 0.76rem !important;
+  letter-spacing: 0.16em;
+}
+
+/* Shared page hierarchy */
+.hero-home .hero-copy h2,
+.hero-home .hero-copy h1,
+.about-hero-copy h1,
+.programs-hero-copy h1,
+.cp-hero-copy h1,
+.gallery-hero h1,
+.subhero h1,
+.subhero h2,
+.sponsor-hero h1 {
+  font-size: var(--ref-display-xl) !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.section-head h2,
+.about-story-heading h2,
+.purpose-intro h2,
+.values-flip-heading h2,
+.about-guidelines h2,
+.about-cta h2,
+.programs-section-head h2,
+.podcast-editorial-head h2,
+.programs-cta h2,
+.cp-network h2,
+.cp-event h2,
+.cp-cta h2,
+.directory-showcase h2,
+.contact-grid h2,
+.story-grid h2,
+.section-heading h2,
+.sponsor-hero-card h2 {
+  font-size: var(--ref-display-md) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.hero-copy p,
+.about-hero-copy > p,
+.programs-hero-copy > p,
+.cp-hero-copy > p,
+.subhero p,
+.sponsor-hero > p,
+.purpose-intro > p,
+.programs-section-head > p,
+.section-head > p {
+  font-size: var(--ref-lead) !important;
+  line-height: 1.65 !important;
+  max-width: 58ch;
+}
+
+/* About page */
+.about-story-heading h2 {
+  max-width: 12ch;
+}
+.about-lead {
+  font-size: clamp(1.1rem, 1.35vw, 1.3rem) !important;
+  line-height: 1.5 !important;
+}
+.about-story-copy p:not(.about-lead) {
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+}
+.purpose-intro {
+  max-width: 760px;
+}
+.vision-panel h3,
+.mission-panel-head h3 {
+  font-size: clamp(2.4rem, 3.45vw, 3.65rem) !important;
+  line-height: 1.01 !important;
+  letter-spacing: -0.04em !important;
+}
+.mission-pillar h4,
+.mission-pillars strong {
+  font-size: 1.28rem !important;
+}
+.mission-pillars p {
+  font-size: 0.98rem !important;
+  line-height: 1.55 !important;
+}
+.value-flip-title {
+  font-size: clamp(1.75rem, 2.15vw, 2.35rem) !important;
+  line-height: 1.02 !important;
+}
+.value-flip-description,
+.value-flip-message {
+  font-size: 1rem !important;
+  line-height: 1.55 !important;
+}
+.guideline-list strong {
+  font-size: 1.08rem !important;
+}
+.guideline-list span,
+.guideline-list p {
+  font-size: 0.97rem !important;
+}
+
+/* Events */
+.program-flip-title {
+  font-size: clamp(1.65rem, 2vw, 2.2rem) !important;
+  line-height: 1.05 !important;
+}
+.program-flip-summary,
+.program-flip-tagline {
+  font-size: 0.98rem !important;
+  line-height: 1.55 !important;
+}
+.podcast-editorial-head h2 {
+  max-width: 15ch;
+}
+.podcast-feature-copy h3 {
+  font-size: clamp(2rem, 2.7vw, 3rem) !important;
+  line-height: 1.03 !important;
+}
+.podcast-rail-head h3 {
+  font-size: clamp(1.55rem, 2vw, 2.1rem) !important;
+}
+
+/* Partners */
+.cp-panel h2 {
+  font-size: clamp(2.25rem, 3vw, 3.25rem) !important;
+  line-height: 1.02 !important;
+}
+.cp-tier h3 {
+  font-size: 1.5rem !important;
+}
+.cp-tier p {
+  font-size: 0.98rem !important;
+}
+.cp-cta h2 {
+  max-width: 18ch;
+}
+
+/* Utility pages */
+.business-card h3,
+.story h3 {
+  font-size: 1.35rem !important;
+  line-height: 1.18 !important;
+}
+.contact-grid h2 {
+  max-width: 14ch;
+}
+
+/* Bathukamma remains expressive but no longer overwhelms */
+.bk-hero h1 {
+  font-size: clamp(4rem, 7vw, 7rem) !important;
+  line-height: 0.88 !important;
+  letter-spacing: -0.055em !important;
+}
+.bk-intro h2,
+.bk-story-head h2,
+.bk-pillars h2,
+.bk-gallery h2,
+.bk-partner h2,
+.bk-community h2,
+.bk-cta h2 {
+  font-size: clamp(2.5rem, 4vw, 4.25rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.04em !important;
+}
+.bk-story-slide h3 {
+  font-size: clamp(1.85rem, 2.5vw, 2.7rem) !important;
+}
+
+/* Sponsorship */
+.sponsor-hero h1 {
+  max-width: 15ch;
+}
+.package-card h3 {
+  font-size: 1.55rem !important;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --ref-display-xl: clamp(3.25rem, 7vw, 4.6rem);
+    --ref-display-lg: clamp(2.75rem, 5.8vw, 3.9rem);
+    --ref-display-md: clamp(2.15rem, 4.8vw, 3rem);
+  }
+  .section {
+    padding-block: clamp(3.5rem, 7vw, 5.5rem);
+  }
+  .about-hero-grid,
+  .programs-hero-grid,
+  .cp-hero-grid {
+    gap: clamp(2rem, 5vw, 4rem) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --ref-display-xl: clamp(2.75rem, 11vw, 3.35rem);
+    --ref-display-lg: clamp(2.45rem, 9.5vw, 3rem);
+    --ref-display-md: clamp(2.05rem, 8.3vw, 2.65rem);
+    --ref-display-sm: clamp(1.65rem, 6.6vw, 2.05rem);
+    --ref-lead: 1.04rem;
+  }
+
+  body {
+    font-size: 16px;
+  }
+  .container {
+    padding-inline: 1.25rem !important;
+  }
+  .section {
+    padding-block: 3.75rem !important;
+  }
+  .eyebrow {
+    font-size: 0.7rem !important;
+    letter-spacing: 0.145em !important;
+  }
+
+  .hero-home .hero-copy h2,
+  .hero-home .hero-copy h1,
+  .about-hero-copy h1,
+  .programs-hero-copy h1,
+  .cp-hero-copy h1,
+  .gallery-hero h1,
+  .subhero h1,
+  .subhero h2,
+  .sponsor-hero h1 {
+    font-size: var(--ref-display-xl) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .hero-copy p,
+  .about-hero-copy > p,
+  .programs-hero-copy > p,
+  .cp-hero-copy > p,
+  .subhero p,
+  .sponsor-hero > p,
+  .purpose-intro > p,
+  .programs-section-head > p,
+  .section-head > p,
+  .about-story-copy p:not(.about-lead) {
+    font-size: 1rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .btn {
+    min-height: 52px !important;
+    padding: 0.78rem 1.25rem !important;
+    font-size: 0.98rem !important;
+  }
+  .hero-actions,
+  .about-hero-actions,
+  .programs-hero-actions,
+  .cp-hero-actions {
+    gap: 0.7rem !important;
+  }
+
+  /* Keep first view concise */
+  .about-hero,
+  .programs-hero,
+  .cp-hero {
+    padding-block: 3.5rem 4.25rem !important;
+  }
+  .about-hero-grid,
+  .programs-hero-grid,
+  .cp-hero-grid {
+    gap: 2.25rem !important;
+  }
+
+  /* About: deliberate mobile hierarchy */
+  .about-hero-copy h1 {
+    max-width: 9.5ch;
+  }
+  .about-story-grid {
+    gap: 1.5rem !important;
+  }
+  .about-story-heading h2,
+  .purpose-intro h2,
+  .values-flip-heading h2,
+  .about-guidelines h2,
+  .about-cta h2 {
+    font-size: var(--ref-display-md) !important;
+  }
+  .about-lead {
+    font-size: 1.08rem !important;
+    line-height: 1.5 !important;
+  }
+  .purpose-experience {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .vision-panel,
+  .mission-panel {
+    padding: 1.5rem !important;
+    border-radius: 24px !important;
+  }
+  .vision-panel h3,
+  .mission-panel-head h3 {
+    font-size: clamp(2.15rem, 8.7vw, 2.7rem) !important;
+    line-height: 1 !important;
+  }
+  .mission-pillars {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  .mission-pillars li {
+    padding: 1rem !important;
+    min-height: 0 !important;
+  }
+  .mission-pillars h4,
+  .mission-pillars strong {
+    font-size: 1.28rem !important;
+  }
+  .mission-pillars p {
+    font-size: 0.96rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .values-flip-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .value-flip-card,
+  .value-flip-trigger,
+  .value-flip-inner {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  .value-flip-inner {
+    transform: none !important;
+  }
+  .value-flip-face {
+    position: relative !important;
+    inset: auto !important;
+    min-height: 0 !important;
+    padding: 1.4rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+  .value-flip-front {
+    display: flex !important;
+  }
+  .value-flip-back {
+    display: none !important;
+  }
+  .value-flip-icon {
+    width: 42px !important;
+    height: 42px !important;
+    margin: 0.7rem 0 !important;
+  }
+  .value-flip-title {
+    font-size: 1.65rem !important;
+    text-align: left !important;
+  }
+  .value-flip-title br {
+    display: none;
+  }
+  .value-flip-description {
+    font-size: 0.98rem !important;
+    text-align: left !important;
+  }
+  .value-flip-action,
+  .values-flip-hint {
+    display: none !important;
+  }
+
+  .about-guidelines {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .guideline-list {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+  .guideline-list > * {
+    padding: 1.1rem !important;
+    min-height: 0 !important;
+  }
+  .about-cta {
+    padding: 2rem 1.5rem !important;
+  }
+  .about-cta .btn {
+    width: auto !important;
+    min-width: 210px;
+  }
+
+  /* Events: cards and podcast */
+  .program-flip-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .program-flip-card,
+  .program-flip-trigger,
+  .program-flip-inner {
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  .program-flip-inner {
+    transform: none !important;
+  }
+  .program-flip-face {
+    position: relative !important;
+    inset: auto !important;
+    min-height: 0 !important;
+  }
+  .program-flip-front {
+    display: flex !important;
+  }
+  .program-flip-back {
+    display: none !important;
+  }
+  .program-flip-action {
+    display: none !important;
+  }
+  .podcast-editorial-head h2 {
+    font-size: var(--ref-display-md) !important;
+  }
+  .podcast-feature-copy h3 {
+    font-size: 2rem !important;
+  }
+
+  /* Partners */
+  .cp-panel h2 {
+    font-size: clamp(2rem, 8vw, 2.55rem) !important;
+  }
+  .cp-tier-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .cp-cta {
+    padding: 2rem 1.5rem !important;
+  }
+
+  /* Utility pages */
+  .business-grid,
+  .story-grid,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .subhero {
+    padding-block: 3.5rem !important;
+  }
+
+  /* Bathukamma */
+  .bk-hero h1 {
+    font-size: clamp(3.25rem, 13vw, 4.4rem) !important;
+    line-height: 0.9 !important;
+  }
+  .bk-intro h2,
+  .bk-story-head h2,
+  .bk-pillars h2,
+  .bk-gallery h2,
+  .bk-partner h2,
+  .bk-community h2,
+  .bk-cta h2 {
+    font-size: clamp(2.15rem, 8.5vw, 2.8rem) !important;
+    line-height: 1 !important;
+  }
+  .bk-story-slide h3 {
+    font-size: 1.75rem !important;
+  }
+
+  /* Footer */
+  .footer {
+    padding-block: 3rem 2rem !important;
+  }
+  .footer-grid {
+    gap: 2rem !important;
+  }
+  .footer p,
+  .footer a {
+    font-size: 0.95rem !important;
+  }
+  .footer-links {
+    gap: 0.65rem !important;
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --ref-display-xl: clamp(2.55rem, 11.5vw, 3rem);
+    --ref-display-md: clamp(1.95rem, 8.5vw, 2.35rem);
+  }
+  .container {
+    padding-inline: 1rem !important;
+  }
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .vision-panel h3,
+  .mission-panel-head h3 {
+    font-size: 2.15rem !important;
+  }
+}
+
+/* Mobile flip-card interaction restoration
+   The earlier responsive pass converted cards to static panels. These rules
+   restore tap-to-flip while keeping the compact one-column mobile layout. */
+@media (max-width: 767px) {
+  .value-flip-card {
+    min-height: 390px !important;
+    height: 390px !important;
+    perspective: 1200px !important;
+  }
+  .value-flip-trigger,
+  .value-flip-inner {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    min-height: 390px !important;
+    height: 390px !important;
+  }
+  .value-flip-inner {
+    transform-style: preserve-3d !important;
+    transition: transform 0.58s cubic-bezier(0.2, 0.75, 0.2, 1) !important;
+  }
+  .value-flip-card.is-flipped .value-flip-inner {
+    transform: rotateY(180deg) !important;
+  }
+  .value-flip-face {
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    min-height: 390px !important;
+    height: 390px !important;
+    padding: 1.35rem !important;
+    align-items: center !important;
+    text-align: center !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+  }
+  .value-flip-front {
+    display: flex !important;
+  }
+  .value-flip-back {
+    display: flex !important;
+    transform: rotateY(180deg) !important;
+  }
+  .value-flip-icon {
+    width: 54px !important;
+    height: 54px !important;
+    margin: 0.55rem auto 0.45rem !important;
+  }
+  .value-flip-title {
+    min-height: 0 !important;
+    font-size: 1.55rem !important;
+    text-align: center !important;
+  }
+  .value-flip-title br {
+    display: initial !important;
+  }
+  .value-flip-rule {
+    margin: 0.85rem 0 1rem !important;
+  }
+  .value-flip-description,
+  .value-flip-message {
+    font-size: 0.94rem !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+  }
+  .value-flip-action {
+    display: inline-flex !important;
+    min-width: 160px !important;
+    min-height: 42px !important;
+    margin-top: auto !important;
+    font-size: 0.78rem !important;
+  }
+  .values-flip-hint {
+    display: flex !important;
+  }
+
+  .program-flip-card {
+    min-height: 430px !important;
+    height: 430px !important;
+    perspective: 1200px !important;
+  }
+  .program-flip-trigger,
+  .program-flip-inner {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    min-height: 430px !important;
+    height: 430px !important;
+  }
+  .program-flip-inner {
+    transform-style: preserve-3d !important;
+    transition: transform 0.58s cubic-bezier(0.2, 0.75, 0.2, 1) !important;
+  }
+  .program-flip-card.is-flipped .program-flip-inner {
+    transform: rotateY(180deg) !important;
+  }
+  .program-flip-face {
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex !important;
+    min-height: 430px !important;
+    height: 430px !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+  }
+  .program-flip-front {
+    display: flex !important;
+  }
+  .program-flip-back {
+    display: flex !important;
+    transform: rotateY(180deg) !important;
+  }
+  .program-flip-action {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .value-flip-card,
+  .value-flip-trigger,
+  .value-flip-inner,
+  .value-flip-face {
+    min-height: 370px !important;
+    height: 370px !important;
+  }
+  .program-flip-card,
+  .program-flip-trigger,
+  .program-flip-inner,
+  .program-flip-face {
+    min-height: 410px !important;
+    height: 410px !important;
+  }
+}
