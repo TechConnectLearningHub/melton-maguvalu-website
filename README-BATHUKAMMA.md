@@ -3,6 +3,7 @@
 The complete project includes the redesigned `bathukamma.html` page.
 
 Dedicated files:
+
 - `assets/bathukamma-page.css`
 - `assets/bathukamma-page.js`
 

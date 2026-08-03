@@ -1,4 +1,3 @@
-
 (() => {
   const initialiseBathukammaStory = () => {
     const stage = document.querySelector("[data-story-stage]");
@@ -10,7 +9,8 @@
     const toggleLabel = document.querySelector("[data-story-toggle-label]");
     const progress = document.querySelector("[data-story-progress]");
 
-    if (!stage || slides.length === 0 || stage.dataset.initialised === "true") return;
+    if (!stage || slides.length === 0 || stage.dataset.initialised === "true")
+      return;
     stage.dataset.initialised = "true";
 
     const duration = 7000;
@@ -22,8 +22,9 @@
     let remaining = duration;
     let pointerStartX = null;
 
-    const setProgress = value => {
-      if (progress) progress.style.width = `${Math.max(0, Math.min(1, value)) * 100}%`;
+    const setProgress = (value) => {
+      if (progress)
+        progress.style.width = `${Math.max(0, Math.min(1, value)) * 100}%`;
     };
 
     const stopTimer = () => {
@@ -34,10 +35,10 @@
       progressFrame = null;
     };
 
-    const animateProgress = startTime => {
+    const animateProgress = (startTime) => {
       progressStart = startTime;
 
-      const frame = now => {
+      const frame = (now) => {
         if (paused) return;
 
         const elapsed = now - progressStart;
@@ -52,19 +53,19 @@
       progressFrame = requestAnimationFrame(frame);
     };
 
-    const updateTabsScroll = index => {
+    const updateTabsScroll = (index) => {
       const tab = tabs[index];
       const tabList = tab?.parentElement;
       if (!tab || !tabList) return;
 
       const targetLeft =
-        tab.offsetLeft - ((tabList.clientWidth - tab.offsetWidth) / 2);
+        tab.offsetLeft - (tabList.clientWidth - tab.offsetWidth) / 2;
 
       tabList.scrollTo({
         left: Math.max(0, targetLeft),
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
           ? "auto"
-          : "smooth"
+          : "smooth",
       });
     };
 
@@ -89,7 +90,10 @@
 
       if (!paused) startTimer();
 
-      if (userInitiated && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (
+        userInitiated &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
         stage.focus({ preventScroll: true });
       }
     };
@@ -97,7 +101,10 @@
     const startTimer = () => {
       stopTimer();
 
-      if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (
+        paused ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
         setProgress(0);
         return;
       }
@@ -108,12 +115,14 @@
       }, remaining);
     };
 
-    const setPaused = value => {
+    const setPaused = (value) => {
       paused = value;
       toggle?.setAttribute("aria-pressed", String(paused));
       toggle?.setAttribute(
         "aria-label",
-        paused ? "Resume automatic chapter progression" : "Pause automatic chapter progression"
+        paused
+          ? "Resume automatic chapter progression"
+          : "Pause automatic chapter progression",
       );
 
       if (toggleLabel) toggleLabel.textContent = paused ? "Play" : "Pause";
@@ -127,7 +136,9 @@
       }
     };
 
-    previous?.addEventListener("click", () => showSlide(currentIndex - 1, true));
+    previous?.addEventListener("click", () =>
+      showSlide(currentIndex - 1, true),
+    );
     next?.addEventListener("click", () => showSlide(currentIndex + 1, true));
     toggle?.addEventListener("click", () => setPaused(!paused));
 
@@ -138,11 +149,11 @@
     stage.addEventListener("mouseenter", () => setPaused(true));
     stage.addEventListener("mouseleave", () => setPaused(false));
     stage.addEventListener("focusin", () => setPaused(true));
-    stage.addEventListener("focusout", event => {
+    stage.addEventListener("focusout", (event) => {
       if (!stage.contains(event.relatedTarget)) setPaused(false);
     });
 
-    stage.addEventListener("keydown", event => {
+    stage.addEventListener("keydown", (event) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         showSlide(currentIndex - 1, true);
@@ -159,12 +170,12 @@
       }
     });
 
-    stage.addEventListener("pointerdown", event => {
+    stage.addEventListener("pointerdown", (event) => {
       pointerStartX = event.clientX;
       setPaused(true);
     });
 
-    stage.addEventListener("pointerup", event => {
+    stage.addEventListener("pointerup", (event) => {
       if (pointerStartX === null) return;
 
       const difference = event.clientX - pointerStartX;
@@ -221,14 +232,15 @@
     marquee.dataset.initialised = "true";
 
     const originalCards = [...track.children];
-    originalCards.forEach(card => {
+    originalCards.forEach((card) => {
       const clone = card.cloneNode(true);
       clone.setAttribute("aria-hidden", "true");
       track.appendChild(clone);
     });
 
     const isMobile = () => window.matchMedia("(max-width: 760px)").matches;
-    const reducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reducedMotion = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let offset = 0;
     let paused = false;
@@ -252,7 +264,7 @@
       track.style.transform = `translate3d(${offset}px,0,0)`;
     };
 
-    const moveBy = amount => {
+    const moveBy = (amount) => {
       if (isMobile()) {
         marquee.scrollBy({ left: amount, behavior: "smooth" });
         return;
@@ -272,12 +284,20 @@
     previous?.addEventListener("click", () => moveBy(-cardStep()));
     next?.addEventListener("click", () => moveBy(cardStep()));
 
-    marquee.addEventListener("mouseenter", () => { paused = true; });
-    marquee.addEventListener("mouseleave", () => { paused = false; });
-    marquee.addEventListener("focusin", () => { paused = true; });
-    marquee.addEventListener("focusout", () => { paused = false; });
+    marquee.addEventListener("mouseenter", () => {
+      paused = true;
+    });
+    marquee.addEventListener("mouseleave", () => {
+      paused = false;
+    });
+    marquee.addEventListener("focusin", () => {
+      paused = true;
+    });
+    marquee.addEventListener("focusout", () => {
+      paused = false;
+    });
 
-    marquee.addEventListener("pointerdown", event => {
+    marquee.addEventListener("pointerdown", (event) => {
       if (isMobile()) return;
 
       dragging = true;
@@ -288,7 +308,7 @@
       marquee.setPointerCapture(event.pointerId);
     });
 
-    marquee.addEventListener("pointermove", event => {
+    marquee.addEventListener("pointermove", (event) => {
       if (!dragging || isMobile()) return;
 
       offset = dragStartOffset + (event.clientX - pointerStart);
@@ -296,14 +316,17 @@
       applyTransform();
     });
 
-    const stopDragging = event => {
+    const stopDragging = (event) => {
       if (!dragging) return;
 
       dragging = false;
       paused = false;
       marquee.classList.remove("is-dragging");
 
-      if (event?.pointerId !== undefined && marquee.hasPointerCapture(event.pointerId)) {
+      if (
+        event?.pointerId !== undefined &&
+        marquee.hasPointerCapture(event.pointerId)
+      ) {
         marquee.releasePointerCapture(event.pointerId);
       }
     };
@@ -311,7 +334,7 @@
     marquee.addEventListener("pointerup", stopDragging);
     marquee.addEventListener("pointercancel", stopDragging);
 
-    const animate = now => {
+    const animate = (now) => {
       const delta = now - lastTime;
       lastTime = now;
 
@@ -326,16 +349,20 @@
 
     frameId = requestAnimationFrame(animate);
 
-    window.addEventListener("resize", () => {
-      if (isMobile()) {
-        track.style.transform = "";
-        offset = 0;
-      } else {
-        marquee.scrollLeft = 0;
-        normaliseOffset();
-        applyTransform();
-      }
-    }, { passive: true });
+    window.addEventListener(
+      "resize",
+      () => {
+        if (isMobile()) {
+          track.style.transform = "";
+          offset = 0;
+        } else {
+          marquee.scrollLeft = 0;
+          normaliseOffset();
+          applyTransform();
+        }
+      },
+      { passive: true },
+    );
 
     document.addEventListener("visibilitychange", () => {
       paused = document.hidden;

@@ -14,7 +14,7 @@ const sections = [
   { id: "stories", file: "./resources/sections/stories.html" },
   { id: "contact", file: "./resources/sections/contact.html" },
   { id: "footer", file: "./resources/sections/footer.html" },
-  { id: "bottom-nav", file: "./resources/sections/bottom-nav.html" }
+  { id: "bottom-nav", file: "./resources/sections/bottom-nav.html" },
 ];
 
 async function loadSection(section) {
@@ -23,7 +23,7 @@ async function loadSection(section) {
   if (!container) {
     return {
       id: section.id,
-      status: "skipped"
+      status: "skipped",
     };
   }
 
@@ -31,12 +31,12 @@ async function loadSection(section) {
 
   try {
     const response = await fetch(section.file, {
-      cache: "no-cache"
+      cache: "no-cache",
     });
 
     if (!response.ok) {
       throw new Error(
-        `Could not load ${section.file}: ${response.status} ${response.statusText}`
+        `Could not load ${section.file}: ${response.status} ${response.statusText}`,
       );
     }
 
@@ -45,7 +45,7 @@ async function loadSection(section) {
 
     return {
       id: section.id,
-      status: "loaded"
+      status: "loaded",
     };
   } catch (error) {
     console.error(error);
@@ -57,7 +57,7 @@ async function loadSection(section) {
     return {
       id: section.id,
       status: "failed",
-      error
+      error,
     };
   }
 }
@@ -81,10 +81,10 @@ async function loadAllSections() {
     new CustomEvent("sectionsLoaded", {
       detail: {
         results,
-        loaded: results.filter(result => result.status === "loaded").length,
-        failed: results.filter(result => result.status === "failed").length
-      }
-    })
+        loaded: results.filter((result) => result.status === "loaded").length,
+        failed: results.filter((result) => result.status === "failed").length,
+      },
+    }),
   );
 }
 
