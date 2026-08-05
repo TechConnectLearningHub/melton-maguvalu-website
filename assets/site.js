@@ -268,10 +268,8 @@ document.addEventListener("sectionsLoaded", () => initSharedSite());
     if (!section || section.dataset.podcastInitialised === "true") return;
     section.dataset.podcastInitialised = "true";
 
-    const apiKey = window.MELBOURNE_MAGUVALU_YOUTUBE_API_KEY || "";
-    if (!apiKey) return;
-
     const handle = section.dataset.youtubeHandle || "@melbourne_maguvalu_aus";
+    const channelUrl = `https://www.youtube.com/${handle}`;
     const list = document.querySelector("#podcastEpisodeList");
     const featureImage = document.querySelector("#podcastFeatureImage");
     const featureTitle = document.querySelector("#podcastFeatureTitle");
@@ -285,6 +283,20 @@ document.addEventListener("sectionsLoaded", () => initSharedSite());
 
     if (!list || !featureImage || !featureTitle || !featureLink) return;
 
+    // The feature remains useful even when no YouTube API key is configured.
+    // Once live episode data loads, setFeatured replaces this fallback URL.
+    const openFeaturedEpisode = () => {
+      const destination = featureLink.href || channelUrl;
+      window.open(destination, "_blank", "noopener,noreferrer");
+    };
+
+    if (featureButton) {
+      featureButton.addEventListener("click", openFeaturedEpisode);
+    }
+
+    const apiKey = window.MELBOURNE_MAGUVALU_YOUTUBE_API_KEY || "";
+    if (!apiKey) return;
+
     const setFeatured = (episode) => {
       featureImage.style.backgroundImage = `url("${episode.thumbnail}")`;
       featureTitle.textContent = episode.title;
@@ -293,8 +305,12 @@ document.addEventListener("sectionsLoaded", () => initSharedSite());
         "Watch this Maata Muchata conversation on YouTube.";
       featureDate.textContent = episode.date;
       featureLink.href = episode.url;
-      featureButton.onclick = () =>
-        window.open(episode.url, "_blank", "noopener,noreferrer");
+      if (featureButton) {
+        featureButton.setAttribute(
+          "aria-label",
+          `Watch ${episode.title} on YouTube`,
+        );
+      }
     };
 
     try {
